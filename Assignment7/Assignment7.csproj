@@ -178,7 +178,6 @@
     <Compile Include="Controllers\Album_vm.cs" />
     <Compile Include="Controllers\ArtistsController.cs" />
     <Compile Include="Controllers\Artist_vm.cs" />
-    <Compile Include="Controllers\GenresController.cs" />
     <Compile Include="Controllers\Genre_vm.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -272,7 +271,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Genres\" />
     <Folder Include="Views\Tracks\" />
   </ItemGroup>
   <ItemGroup>
