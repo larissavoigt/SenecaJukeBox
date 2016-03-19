@@ -51,7 +51,7 @@ namespace Assignment7.Models
              .HasMany(artist => artist.Albums).WithMany(album => album.Artists)
              .Map(t => t.MapLeftKey("ArtistId")
              .MapRightKey("AlbumId")
-             .ToTable("ArtistAlbum"));
+             .ToTable("AlbumArtists"));
         }
 
         public static ApplicationDbContext Create()

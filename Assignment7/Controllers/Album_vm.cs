@@ -13,6 +13,10 @@ namespace Assignment7.Controllers
         public int Id { get; set; }
 
         [Required, StringLength(150)]
+        [Display(Name = "Name")]
+        public string Name { get; set; }
+
+        [Required, StringLength(150)]
         [Display(Name = "Executive")]
         public string Coordinator { get; set; }
 
@@ -30,6 +34,9 @@ namespace Assignment7.Controllers
 
     public class AlbumAddForm
     {
+        [Required, StringLength(150)]
+        [Display(Name = "Name")]
+        public string Name { get; set; }
 
         [Required, StringLength(150)]
         [Display(Name = "Executive")]
@@ -50,6 +57,10 @@ namespace Assignment7.Controllers
     public class AlbumAdd
     {
         public int Id { get; set; }
+
+        [Required, StringLength(150)]
+        [Display(Name = "Name")]
+        public string Name { get; set; }
 
         public string Coordinator { get; set; }
 
@@ -75,6 +86,10 @@ namespace Assignment7.Controllers
     public class AlbumEditArtistsForm
     {
         public int Id { get; set; }
+
+        [Required, StringLength(150)]
+        [Display(Name = "Name")]
+        public string Name { get; set; }
 
         [Required, StringLength(150)]
         [Display(Name = "Executive")]

@@ -102,5 +102,22 @@ namespace Assignment7.Controllers
                 return View();
             }
         }
+
+        // GET: Artists/Albums/5
+        // Attention - Used "attribute routing" for a custom URL segment (resource)
+        public ActionResult Albums(int? id)
+        {
+            // Attempt to fetch the matching object
+            var o = m.ArtistGetByIdWithDetail(id.GetValueOrDefault());
+
+            if (o == null)
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+                return View(o);
+            }
+        }
     }
 }
