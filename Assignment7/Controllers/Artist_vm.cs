@@ -85,7 +85,7 @@ namespace Assignment7.Controllers
         }
 
         [Display(Name = "List of Albums")]
-        public IEnumerable<AlbumBase> Albums { get; set; }
+        public ICollection<AlbumBase> Albums { get; set; }
     }
 
     // ############################################################

@@ -1,14 +1,20 @@
 ﻿@model Assignment7.Controllers.ArtistBase
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = Model.Name;
 }
 
-<h2>Details</h2>
+<div class="page-header">
+    <div class='btn-toolbar pull-right'>
+        <div class='btn-group pull-right'>  
+            @Html.ActionLink("Create New Album", "Create", "Albums", new { id = Model.Id }, new { @class = "btn btn-default" })
+            @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-default" })
+        </div>
+    </div>
+    <h1>@Model.Name</h1>
+</div>
 
 <div>
-    <h4>ArtistBase</h4>
-    <hr />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.BirthName)
@@ -43,24 +49,12 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.UrlArtist)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.UrlArtist)
+            <img src="@Model.UrlArtist" width="200" class="thumbnail" />
         </dd>
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

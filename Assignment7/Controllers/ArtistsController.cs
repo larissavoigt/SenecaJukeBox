@@ -13,8 +13,8 @@ namespace Assignment7.Controllers
         // GET: Artists
         public ActionResult Index()
         {
-            var c = m.ArtistGetAll();
-            return View(c);
+            var artists = m.ArtistGetAllWithAlbums();
+            return View(artists);
         }
 
         // GET: Artists/Details/5
