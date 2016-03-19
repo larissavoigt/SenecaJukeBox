@@ -33,6 +33,7 @@ namespace Assignment7.Controllers
         }
 
         // GET: Artists/Create
+        [Authorize(Roles = "User")]
         public ActionResult Create()
         {
             return View();
@@ -40,6 +41,7 @@ namespace Assignment7.Controllers
 
         // POST: Artists/Create
         [HttpPost]
+        [Authorize(Roles = "User")]
         public ActionResult Create(ArtistAdd newItem)
         {
             if (!ModelState.IsValid)
