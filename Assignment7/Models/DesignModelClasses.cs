@@ -26,6 +26,7 @@ namespace Assignment7.Models
         public Artist()
         {
             BirthOrStartDate = DateTime.Now;
+            Albums = List<Album>();
         }
 
         public int Id { get; set; }
@@ -41,6 +42,8 @@ namespace Assignment7.Models
         public string Name { get; set; }
 
         public string UrlArtist { get; set; }
+
+        public ICollection<Album> Albums { get; set; }
     }
 
     public class Album
@@ -49,6 +52,8 @@ namespace Assignment7.Models
         public Album()
         {
             ReleasetDate = DateTime.Now;
+            Artists = List<Artist>();
+            Tracks = List<Track>();
         }
 
         public int Id { get; set; }
@@ -60,10 +65,20 @@ namespace Assignment7.Models
         public DateTime ReleaseDate { get; set; }
 
         public string UrlAlbum { get; set; }
+
+        public ICollection<Artist> Artists { get; set; }
+
+        public ICollection<Track> Tracks { get; set; }
     }
 
     public class Track
     {
+
+        public Track()
+        {
+            Albums = List<Album>();
+        }
+
         public int Id { get; set; }
 
         public string Name { get; set; }
@@ -73,6 +88,8 @@ namespace Assignment7.Models
         public string Composers { get; set; }
 
         public string Genre { get; set; }
+
+        public ICollection<Album> Albums { get; set; }
 
     }
 
