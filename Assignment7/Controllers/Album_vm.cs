@@ -107,6 +107,7 @@ namespace Assignment7.Controllers
         public string UrlAlbum { get; set; }
 
         // Attention - Multiple select requires a MultiSelectList object
+        [Display(Name = "Artist List")]
         public MultiSelectList ArtistList { get; set; }
     }
 
