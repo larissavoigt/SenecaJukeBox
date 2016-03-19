@@ -30,6 +30,7 @@ namespace Assignment7.Models
         // Attention - 12 - Add DbSet<TEntity> properties here
 
         public DbSet<Artist> Artists { get; set; }
+        public DbSet<Album> Albums { get; set; }
 
         // Turn OFF cascade delete, which is (unfortunately) the default setting
         // for Code First generated databases
@@ -45,6 +46,12 @@ namespace Assignment7.Models
             // all default convention-based associations
 
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+
+            modelBuilder.Entity<Artist>()
+             .HasMany(artist => artist.Albums).WithMany(album => album.Artists)
+             .Map(t => t.MapLeftKey("ArtistId")
+             .MapRightKey("AlbumId")
+             .ToTable("ArtistAlbum"));
         }
 
         public static ApplicationDbContext Create()

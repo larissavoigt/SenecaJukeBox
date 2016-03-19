@@ -43,7 +43,7 @@ namespace Assignment7.Models
 
         public string UrlArtist { get; set; }
 
-        public ICollection<Album> Albums { get; set; }
+        public virtual ICollection<Album> Albums { get; set; }
     }
 
     public class Album
@@ -66,9 +66,9 @@ namespace Assignment7.Models
 
         public string UrlAlbum { get; set; }
 
-        public ICollection<Artist> Artists { get; set; }
+        public virtual ICollection<Artist> Artists { get; set; }
 
-        public ICollection<Track> Tracks { get; set; }
+        public virtual ICollection<Track> Tracks { get; set; }
     }
 
     public class Track
@@ -89,7 +89,7 @@ namespace Assignment7.Models
 
         public string Genre { get; set; }
 
-        public ICollection<Album> Albums { get; set; }
+        public virtual ICollection<Album> Albums { get; set; }
 
     }
 
