@@ -46,6 +46,13 @@ namespace Assignment7.Controllers
             {
                 return View(newItem);
             }
+
+            var addedItem = m.ArtistAdd(newItem);
+            
+            if (addedItem == null)
+            {
+                return View(newItem);
+            }
             else
             {
                 return RedirectToAction("details", new { id = addedItem.ArtistId });
