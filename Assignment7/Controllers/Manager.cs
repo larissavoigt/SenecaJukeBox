@@ -41,7 +41,7 @@ namespace Assignment7.Controllers
 
          public IEnumerable<ArtistBase> ArtistGetAll()
         {
-            return Mapper.Map<IEnumerable<ArtistBase>>(ds.Artists);
+            return Mapper.Map<IEnumerable<ArtistBase>>(ds.Artists.OrderBy(a => a.Name));
         }
 
         public ArtistBase ArtistGetById(int? id)
@@ -58,6 +58,117 @@ namespace Assignment7.Controllers
             return (addedItem == null) ? null : Mapper.Map<ArtistBase>(addedItem);
         }
 
+        public IEnumerable<ArtistWithAlbums> ArtistGetAllWithAlbums()
+        {
+            return Mapper.Map<IEnumerable<ArtistWithAlbums>>
+                (ds.Artists.Include("Albums").OrderBy(a => a.Name));
+        }
+
+        public ArtistWithAlbums ArtistGetByIdWithDetail(int id)
+        {
+            // Attempt to fetch the object
+            var o = ds.Artists.Include("Albums").SingleOrDefault(e => e.Id == id);
+
+            // Return the result, or null if not found
+            return (o == null) ? null : Mapper.Map<ArtistWithAlbums>(o);
+        }
+
+        // Attention - Edit an Artist's Albums
+        public ArtistWithAlbums ArtistEditAlbums(ArtistEditAlbums newItem)
+        {
+            // Attempt to fetch the object
+
+            // When editing an object with a to-many collection,
+            // and you wish to edit the collection,
+            // MUST fetch its associated collection
+            var o = ds.Artists.Include("Albums")
+                .SingleOrDefault(e => e.Id == newItem.Id);
+
+            if (o == null)
+            {
+                // Problem - object was not found, so return
+                return null;
+            }
+            else
+            {
+                // Update the object with the incoming values
+
+                // First, clear out the existing collection
+                o.Albums.Clear();
+
+                // Then, go through the incoming items
+                // For each one, add to the fetched object's collection
+                foreach (var item in newItem.AlbumIds)
+                {
+                    var a = ds.Albums.Find(item);
+                    o.Albums.Add(a);
+                }
+                // Save changes
+                ds.SaveChanges();
+
+                return Mapper.Map<ArtistWithAlbums>(o);
+            }
+        }
+
+        // ############################################################
+        // Album
+
+        public IEnumerable<AlbumBase> AlbumGetAll()
+        {
+            return Mapper.Map<IEnumerable<AlbumBase>>(ds.Albums.OrderBy(a => a.ReleaseDate));
+        }
+
+        public IEnumerable<AlbumWithArtists> AlbumGetAllWithArtists()
+        {
+            return Mapper.Map<IEnumerable<AlbumWithArtists>>
+                (ds.Albums.Include("Artists").OrderBy(a => a.ReleaseDate));
+        }
+
+        public AlbumWithArtists AlbumGetByIdWithDetail(int id)
+        {
+            // Attempt to fetch the object
+            var o = ds.Albums.Include("Artists").SingleOrDefault(a => a.Id == id);
+
+            // Return the result, or null if not found
+            return (o == null) ? null : Mapper.Map<AlbumWithArtists>(o);
+        }
+
+        // Edit a job duty's list of Artists
+        public AlbumWithArtists AlbumEditArtists(AlbumEditArtists newItem)
+        {
+            // Attempt to fetch the object
+
+            // When editing an object with a to-many collection,
+            // and you wish to edit the collection,
+            // MUST fetch its associated collection
+            var o = ds.Albums.Include("Artists")
+                .SingleOrDefault(e => e.Id == newItem.Id);
+
+            if (o == null)
+            {
+                // Problem - object was not found, so return
+                return null;
+            }
+            else
+            {
+                // Update the object with the incoming values
+
+                // First, clear out the existing collection
+                o.Artists.Clear();
+
+                // Then, go through the incoming items
+                // For each one, add to the fetched object's collection
+                foreach (var item in newItem.ArtistIds)
+                {
+                    var a = ds.Artists.Find(item);
+                    o.Artists.Add(a);
+                }
+                // Save changes
+                ds.SaveChanges();
+
+                return Mapper.Map<AlbumWithArtists>(o);
+            }
+        }
 
         // Attention - 13 - Add some programmatically-generated objects to the data store
         // Can write one method, or many methods - your decision
