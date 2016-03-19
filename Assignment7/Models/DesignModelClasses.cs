@@ -26,7 +26,7 @@ namespace Assignment7.Models
         public Artist()
         {
             BirthOrStartDate = DateTime.Now;
-            Albums = List<Album>();
+            Albums = new List<Album>();
         }
 
         public int Id { get; set; }
@@ -51,9 +51,9 @@ namespace Assignment7.Models
 
         public Album()
         {
-            ReleasetDate = DateTime.Now;
-            Artists = List<Artist>();
-            Tracks = List<Track>();
+            ReleaseDate = DateTime.Now;
+            Artists = new List<Artist>();
+            Tracks = new List<Track>();
         }
 
         public int Id { get; set; }
@@ -76,7 +76,7 @@ namespace Assignment7.Models
 
         public Track()
         {
-            Albums = List<Album>();
+            Albums = new List<Album>();
         }
 
         public int Id { get; set; }
@@ -99,5 +99,4 @@ namespace Assignment7.Models
 
         public string Name { get; set; }
     }
-}
 }

@@ -55,7 +55,7 @@ namespace Assignment7.Controllers
             }
             else
             {
-                return RedirectToAction("details", new { id = addedItem.ArtistId });
+                return RedirectToAction("details", new { id = addedItem.Id });
             }
         }
 

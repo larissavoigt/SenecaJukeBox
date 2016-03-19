@@ -46,14 +46,14 @@ namespace Assignment7.Controllers
 
         public ArtistBase ArtistGetById(int? id)
         {
-            var o = ds.Artists.find(id);
+            var o = ds.Artists.Find(id);
             return (o == null) ? null : Mapper.Map<ArtistBase>(o);
         }
 
         public ArtistBase ArtistAdd(ArtistAdd newItem)
         {
             var addedItem = ds.Artists.Add(Mapper.Map<Artist>(newItem));
-            ds.SaveChanges;
+            ds.SaveChanges();
 
             return (addedItem == null) ? null : Mapper.Map<ArtistBase>(addedItem);
         }

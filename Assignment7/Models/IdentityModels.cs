@@ -29,7 +29,7 @@ namespace Assignment7.Models
 
         // Attention - 12 - Add DbSet<TEntity> properties here
 
-
+        public DbSet<Artist> Artists { get; set; }
 
         // Turn OFF cascade delete, which is (unfortunately) the default setting
         // for Code First generated databases
