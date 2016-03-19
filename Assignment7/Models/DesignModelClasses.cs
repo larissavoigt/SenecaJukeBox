@@ -20,7 +20,8 @@ namespace Assignment7.Models
     // Do NOT configure scalar properties (e.g. int, double) with the [Required] attribute
     // Initialize DateTime and collection properties in a default constructor
 
-    public class Artist {
+    public class Artist
+    {
 
         public Artist()
         {
@@ -41,4 +42,24 @@ namespace Assignment7.Models
 
         public string UrlArtist { get; set; }
     }
+
+    public class Album
+    {
+
+        public Album()
+        {
+            ReleasetDate = DateTime.Now;
+        }
+
+        public int Id { get; set; }
+
+        public string Coordinator { get; set; }
+
+        public string Genre { get; set; }
+
+        public DateTime ReleaseDate { get; set; }
+
+        public string UrlAlbum { get; set; }
+    }
+}
 }
