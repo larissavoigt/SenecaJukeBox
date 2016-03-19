@@ -314,7 +314,14 @@ namespace Assignment7.Controllers
             }
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+
+            var roles = new List<string> { "Executive", "Coordinator", "Clerk", "Staff" };
+
+            // Define a register form
+            var form = new RegisterViewModelForm();
+            form.RoleList = new MultiSelectList(roles);
+
+            return View(form);
         }
 
         //
