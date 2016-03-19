@@ -8,6 +8,8 @@ namespace Assignment7.Controllers
 {
     public class ArtistsController : Controller
     {
+        private Manager m = new Manager();
+
         // GET: Artists
         public ActionResult Index()
         {
@@ -17,7 +19,8 @@ namespace Assignment7.Controllers
         // GET: Artists/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var c = m.ArtistGetAll();
+            return View(c);
         }
 
         // GET: Artists/Create

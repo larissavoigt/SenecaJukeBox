@@ -39,7 +39,10 @@ namespace Assignment7.Controllers
         // ProductEdit()
         // ProductDelete()
 
-
+            public IEnumerable<ArtistBase> ArtistGetAll()
+        {
+            return Mapper.Map<IEnumerable<ArtistBase>>(ds.Artists);
+        }
 
 
         // Attention - 13 - Add some programmatically-generated objects to the data store
