@@ -8,6 +8,8 @@ namespace Assignment7.Controllers
 {
     public class AlbumsController : Controller
     {
+        private Manager m = new Manager();
+
         // GET: Albums
         public ActionResult Index()
         {
@@ -21,9 +23,31 @@ namespace Assignment7.Controllers
         }
 
         // GET: Albums/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
-            return View();
+            // Attempt to fetch the matching object
+            var a = m.ArtistGetById(id.GetValueOrDefault());
+
+            if (a == null)
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+                ViewBag.ArtistName = a.Name;
+
+                var form = new AlbumEditArtistsForm();
+                var selectedValues = new List<int> { a.Id };
+
+                form.ArtistList = new MultiSelectList
+                        (items: m.ArtistGetAll(),
+                        dataValueField: "Id",
+                        dataTextField: "Name",
+                        selectedValues: selectedValues);
+
+                return View(form);
+            }
+
         }
 
         // POST: Albums/Create

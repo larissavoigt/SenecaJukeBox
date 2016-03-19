@@ -104,7 +104,6 @@ namespace Assignment7.Controllers
         }
 
         // GET: Artists/Albums/5
-        // Attention - Used "attribute routing" for a custom URL segment (resource)
         public ActionResult Albums(int? id)
         {
             // Attempt to fetch the matching object
@@ -119,5 +118,6 @@ namespace Assignment7.Controllers
                 return View(o);
             }
         }
+
     }
 }

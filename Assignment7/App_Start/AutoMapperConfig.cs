@@ -20,6 +20,9 @@ namespace Assignment7
             Mapper.CreateMap<Models.Artist, Controllers.ArtistWithAlbums>();
             Mapper.CreateMap<Controllers.ArtistBase, Controllers.ArtistEditAlbumsForm>();
 
+            // Albums
+            Mapper.CreateMap<Controllers.AlbumBase, Controllers.AlbumEditArtistsForm>();
+
             // Disable AutoMapper v4.2.x warnings
 #pragma warning disable CS0618
 
