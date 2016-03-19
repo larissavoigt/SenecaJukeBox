@@ -43,7 +43,8 @@ namespace Assignment7.Controllers
                         (items: m.ArtistGetAll(),
                         dataValueField: "Id",
                         dataTextField: "Name",
-                        selectedValues: selectedValues);
+                        selectedValues: selectedValues,
+                        disabledValues: selectedValues);
 
                 return View(form);
             }
