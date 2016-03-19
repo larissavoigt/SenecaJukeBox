@@ -13,7 +13,7 @@ namespace Assignment7
         {
             // Add map creation statements here
             // Mapper.CreateMap< FROM , TO >();
-
+#pragma warning disable CS0618
             /* Artists */
             Mapper.CreateMap<Models.Artist, Controllers.ArtistBase>();
             Mapper.CreateMap<Controllers.ArtistAdd, Models.Artist>();
@@ -21,13 +21,8 @@ namespace Assignment7
             Mapper.CreateMap<Controllers.ArtistBase, Controllers.ArtistEditAlbumsForm>();
 
             // Albums
+            Mapper.CreateMap<Models.Album, Controllers.AlbumWithArtists>();
             Mapper.CreateMap<Controllers.AlbumBase, Controllers.AlbumEditArtistsForm>();
-
-            // Disable AutoMapper v4.2.x warnings
-#pragma warning disable CS0618
-
-            // Attention - AutoMapper create map statements
-
 #pragma warning restore CS0618
         }
     }
