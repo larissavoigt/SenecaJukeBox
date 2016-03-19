@@ -39,9 +39,15 @@ namespace Assignment7.Controllers
         // ProductEdit()
         // ProductDelete()
 
-            public IEnumerable<ArtistBase> ArtistGetAll()
+         public IEnumerable<ArtistBase> ArtistGetAll()
         {
             return Mapper.Map<IEnumerable<ArtistBase>>(ds.Artists);
+        }
+
+        public ArtistBase ArtistGetById(int? id)
+        {
+            var o = ds.Artists.find(id);
+            return (o == null) ? null : Mapper.Map<ArtistBase>(o);
         }
 
 
