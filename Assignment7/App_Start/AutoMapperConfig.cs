@@ -16,6 +16,7 @@ namespace Assignment7
 
             /* Artists */
             Mapper.CreateMap<Models.Artist, Controllers.ArtistBase>();
+            Mapper.CreateMap<Controllers.ArtistAdd, Models.Artist>();
 
             // Disable AutoMapper v4.2.x warnings
 #pragma warning disable CS0618

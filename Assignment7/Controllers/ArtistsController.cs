@@ -40,17 +40,15 @@ namespace Assignment7.Controllers
 
         // POST: Artists/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(ArtistAdd newItem)
         {
-            try
+            if (!ModelState.IsValid)
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                return View(newItem);
             }
-            catch
+            else
             {
-                return View();
+                return RedirectToAction("details", new { id = addedItem.ArtistId });
             }
         }
 

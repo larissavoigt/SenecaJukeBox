@@ -50,6 +50,14 @@ namespace Assignment7.Controllers
             return (o == null) ? null : Mapper.Map<ArtistBase>(o);
         }
 
+        public ArtistBase ArtistAdd(ArtistAdd newItem)
+        {
+            var addedItem = ds.Artists.Add(Mapper.Map<Artist>(newItem));
+            ds.SaveChanges;
+
+            return (addedItem == null) ? null : Mapper.Map<ArtistBase>(addedItem);
+        }
+
 
         // Attention - 13 - Add some programmatically-generated objects to the data store
         // Can write one method, or many methods - your decision
