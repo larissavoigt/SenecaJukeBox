@@ -174,13 +174,16 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AlbumsController.cs" />
     <Compile Include="Controllers\Album_vm.cs" />
     <Compile Include="Controllers\ArtistsController.cs" />
     <Compile Include="Controllers\Artist_vm.cs" />
+    <Compile Include="Controllers\GenresController.cs" />
     <Compile Include="Controllers\Genre_vm.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\Manager.cs" />
+    <Compile Include="Controllers\TracksController.cs" />
     <Compile Include="Controllers\Track_vm.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -263,7 +266,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Albums\" />
     <Folder Include="Views\Artists\" />
+    <Folder Include="Views\Genres\" />
+    <Folder Include="Views\Tracks\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
