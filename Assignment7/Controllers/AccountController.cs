@@ -254,7 +254,7 @@ namespace Assignment7.Controllers
             // Attention - 02 - Define your custom role claims here
             // However, in a real-world in-production app, you would likely maintain
             //   a valid list of custom claims in persistent storage somewhere
-            var roles = new List<string> { "RoleOne", "RoleTwo", "RoleThree" };
+            var roles = new List<string> { "Executive" , "Coordinator", "Clerk", "Staff" };
 
             // Define a register form
             var form = new RegisterViewModelForm();
