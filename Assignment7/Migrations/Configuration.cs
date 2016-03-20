@@ -164,7 +164,7 @@ namespace Assignment7.Migrations
                 {
                     Name = "The Fame",
                     Genre = "Pop",
-                    UrlAlbum = "",
+                    UrlAlbum = "http://www.ladygaga.com/sites/g/files/g20001281/f/styles/300x300/public/201306/00602517891388.jpg?itok=S3SusKRe",
                     ReleaseDate = new System.DateTime(2008, 8, 19),
                     Coordinator = "coordinator@senecajukebox.com"
                 },
@@ -182,7 +182,7 @@ namespace Assignment7.Migrations
                 {
                     Name = "Falling into You",
                     Genre = "Pop",
-                    UrlAlbum = "https://cdn.discogs.com/3X6uKvk6eVzPDFfg5XkScSsWv3U=/fit-in/300x300/filters:strip_icc():format(jpeg):mode_rgb()/discogs-images/R-1974065-1256055425.jpeg.jpg",
+                    UrlAlbum = "https://ukutabs.com/uploads/2012/09/Falling-Into-You.jpg",
                     ReleaseDate = new System.DateTime(1996, 3, 8),
                     Coordinator = "coordinator@senecajukebox.com"
                 },
