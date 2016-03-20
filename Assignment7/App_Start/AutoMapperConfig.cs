@@ -24,8 +24,8 @@ namespace Assignment7
             // Albums
             Mapper.CreateMap<Models.Album, Controllers.AlbumBase>();
             Mapper.CreateMap<Models.Album, Controllers.AlbumWithArtists>();
-            Mapper.CreateMap<Controllers.AlbumEditArtists, Models.Album>();
-            Mapper.CreateMap<Controllers.AlbumBase, Controllers.AlbumEditArtistsForm>();
+            Mapper.CreateMap<Controllers.AlbumAdd, Models.Album>();
+            Mapper.CreateMap<Controllers.AlbumBase, Controllers.AlbumAddForm>();
 
             // Genres
             Mapper.CreateMap<Models.Genre, Controllers.GenreBase>();

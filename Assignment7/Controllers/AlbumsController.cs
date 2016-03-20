@@ -48,7 +48,7 @@ namespace Assignment7.Controllers
                 ViewBag.ArtistName = a.Name;
                 ViewBag.ArtistId = a.Id;
 
-                var form = new AlbumEditArtistsForm();
+                var form = new AlbumAddForm();
                 var selectedValues = new List<int> { a.Id };
 
                 form.ArtistList = new MultiSelectList
@@ -71,7 +71,7 @@ namespace Assignment7.Controllers
         // POST: Albums/Create
         [Authorize(Roles = "User")]
         [HttpPost]
-        public ActionResult Create(AlbumEditArtists album)
+        public ActionResult Create(AlbumAdd album)
         {
             if (!ModelState.IsValid)
             {

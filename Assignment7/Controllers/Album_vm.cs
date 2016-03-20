@@ -33,22 +33,6 @@ namespace Assignment7.Controllers
         public string UrlAlbum { get; set; }
     }
 
-    public class AlbumAdd
-    {
-        public int Id { get; set; }
-
-        [Required, StringLength(150)]
-        [Display(Name = "Name")]
-        public string Name { get; set; }
-
-        public string Coordinator { get; set; }
-
-        public string Genre { get; set; }
-
-        public DateTime ReleaseDate { get; set; }
-
-        public string UrlAlbum { get; set; }
-    }
 
     public class AlbumWithArtists : AlbumBase
     {
@@ -61,48 +45,24 @@ namespace Assignment7.Controllers
         public IEnumerable<ArtistBase> Artists { get; set; }
     }
 
-    // Send TO the HTML Form
-    public class AlbumEditArtistsForm
+   
+    public class AlbumAdd : AlbumBase
     {
-        public int Id { get; set; }
+        public AlbumAdd()
+        {
+            ArtistIds = new List<int>();
+        }
 
-        [Required, StringLength(150)]
-        [Display(Name = "Name")]
-        public string Name { get; set; }
+        public IEnumerable<int> ArtistIds { get; set; }
+    }
 
-        [Required, StringLength(150)]
-        [Display(Name = "Executive")]
-        public string Coordinator { get; set; }
+    public class AlbumAddForm : AlbumBase
+    {
 
-        [Required]
-        public string Genre { get; set; }
-
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:MMM dd, yyyy}")]
-        [Display(Name = "Release Date")]
-        public DateTime ReleaseDate { get; set; }
-
-        [DataType(DataType.Url)]
-        [Required, StringLength(150)]
-        [Display(Name = "Album Cover")]
-        public string UrlAlbum { get; set; }
-
-        // Attention - Multiple select requires a MultiSelectList object
         [Display(Name = "Artist List")]
         public MultiSelectList ArtistList { get; set; }
 
         public SelectList GenreList { get; set; }
     }
 
-    // Data submitted by the browser user
-    public class AlbumEditArtists : AlbumAdd
-    {
-        public AlbumEditArtists()
-        {
-            ArtistIds = new List<int>();
-        }
-
-        // Incoming collection of selected Artist identifiers
-        public IEnumerable<int> ArtistIds { get; set; }
-    }
 }

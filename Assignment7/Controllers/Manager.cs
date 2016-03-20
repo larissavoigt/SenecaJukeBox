@@ -89,7 +89,7 @@ namespace Assignment7.Controllers
         }
 
         // Create a new album with artists
-        public AlbumWithArtists AlbumEditArtists(AlbumEditArtists newItem)
+        public AlbumWithArtists AlbumEditArtists(AlbumAdd newItem)
         {
 
             var o = ds.Albums.Add(Mapper.Map<Album>(newItem));

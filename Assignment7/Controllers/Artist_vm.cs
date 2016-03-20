@@ -59,18 +59,4 @@ namespace Assignment7.Controllers
         [Display(Name = "List of Albums")]
         public ICollection<AlbumBase> Albums { get; set; }
     }
-
-    // Data submitted by the browser user
-    public class ArtistEditAlbums
-    {
-        public ArtistEditAlbums()
-        {
-            AlbumIds = new List<int>();
-        }
-
-        public int Id { get; set; }
-
-        // Incoming collection of selected albums identifiers
-        public IEnumerable<int> AlbumIds { get; set; }
-    }
 }
