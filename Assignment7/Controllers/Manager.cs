@@ -39,7 +39,7 @@ namespace Assignment7.Controllers
         // ProductEdit()
         // ProductDelete()
 
-         public IEnumerable<ArtistBase> ArtistGetAll()
+        public IEnumerable<ArtistBase> ArtistGetAll()
         {
             return Mapper.Map<IEnumerable<ArtistBase>>(ds.Artists.OrderBy(a => a.Name));
         }
@@ -105,6 +105,11 @@ namespace Assignment7.Controllers
             return (o == null) ? null : Mapper.Map<AlbumWithArtists>(o);
         }
 
+        public IEnumerable<GenreBase> Genres()
+        {
+            return Mapper.Map<IEnumerable<GenreBase>>(ds.Genres.OrderBy(a => a.Name));
+        }
+
         // Attention - 13 - Add some programmatically-generated objects to the data store
         // Can write one method, or many methods - your decision
         // The important idea is that you check for existing data first
@@ -114,11 +119,33 @@ namespace Assignment7.Controllers
         {
             // Return if there's existing data
 
-            //if (ds.Your_Entity_Set.Count() > 0) { return false; }
+            if (ds.Genres.Count() > 0) { return false; }
 
-            // Otherwise...
-            // Create and add objects
-            // Save changes
+            var genres = new List<string> {
+                "Alternative",
+                 "Blues",
+                 "Classical",
+                 "Country",
+                 "Dance",
+                 "Easy Listening",
+                 "Electronic",
+                "Hip Hop / Rap",
+                "Indie Pop",
+                "Jazz",
+                 "New Age",
+                 "Opera",
+                 "Pop",
+                 "R&B / Soul",
+                 "Reggae",
+                 "Rock",
+                 "World Music / Beats"
+            };
+
+            foreach (var g in genres)
+            {
+                ds.Genres.Add(new Genre { Name = g });
+                ds.SaveChanges();
+            }
 
             return true;
         }

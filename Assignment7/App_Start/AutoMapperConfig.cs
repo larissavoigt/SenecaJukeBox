@@ -25,6 +25,7 @@ namespace Assignment7
             Mapper.CreateMap<Models.Album, Controllers.AlbumWithArtists>();
             Mapper.CreateMap<Controllers.AlbumEditArtists, Models.Album>();
             Mapper.CreateMap<Controllers.AlbumBase, Controllers.AlbumEditArtistsForm>();
+
 #pragma warning restore CS0618
         }
     }
