@@ -17,7 +17,7 @@
 
 <div class="row">
 
-    <div class="col-md-8">
+    <div class="col-md-6">
 
         <dl class="dl-horizontal">
 
@@ -44,7 +44,7 @@
             <dd>
                 @Html.DisplayFor(model => model.Genre)
             </dd>
-            
+
             <dt>
                 @Html.DisplayNameFor(model => model.Albums)
             </dt>
@@ -61,13 +61,12 @@
         </dl>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-6">
         <div class="thumbnail">
-            @*<img src="@Model.UrlTrack" />
-    <div class="caption text-center">
-        @Html.DisplayNameFor(model => model.UrlTrack)
-    </div>
-            *@
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/@Model.YoutubeId" frameborder="0" allowfullscreen></iframe>
+            <div class="caption text-center">
+                @Html.DisplayNameFor(model => model.YoutubeId)
+            </div>
         </div>
     </div>
 

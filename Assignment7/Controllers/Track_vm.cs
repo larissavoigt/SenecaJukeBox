@@ -24,6 +24,11 @@ namespace Assignment7.Controllers
 
         [Required]
         public string Genre { get; set; }
+
+        [Required]
+        [StringLength(15)]
+        [Display(Name = "Videoclip")]
+        public string YoutubeId { get; set; }
     }
 
     public class TrackAdd : TrackBase
@@ -43,7 +48,7 @@ namespace Assignment7.Controllers
             Albums = new List<AlbumBase>();
         }
 
-        [Display(Name = "List of Albums")]
+        [Display(Name = "Albums with this Track")]
         public ICollection<AlbumBase> Albums { get; set; }
     }
 }

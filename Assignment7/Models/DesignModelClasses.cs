@@ -94,6 +94,8 @@ namespace Assignment7.Models
 
         public string Genre { get; set; }
 
+        public string YoutubeId { get; set; }
+
         public virtual ICollection<Album> Albums { get; set; }
 
     }
