@@ -8,82 +8,67 @@ namespace Assignment7.Controllers
 {
     public class TracksController : Controller
     {
+        private Manager m = new Manager();
+
         // GET: Tracks
         public ActionResult Index()
         {
-            return View();
+            return View(m.TrackDetailsGetAll());
         }
 
         // GET: Tracks/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
-            return View();
+            var o = m.TrackDetailsGetById(id.GetValueOrDefault());
+
+            if (o == null)
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+                return View(o);
+            }
         }
 
         // GET: Tracks/Create
+        [Authorize(Roles = "Clerk")]
         public ActionResult Create()
         {
-            return View();
+            var form = new TrackAddForm();
+
+            form.GenreList = new SelectList
+                    (items: m.GenreGetAll(),
+                    dataValueField: "Name",
+                    dataTextField: "Name");
+
+            return View(form);
         }
 
         // POST: Tracks/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [Authorize(Roles = "Clerk")]
+        public ActionResult Create(TrackAdd newItem)
         {
-            try
-            {
-                // TODO: Add insert logic here
+            newItem.Clerk = HttpContext.User.Identity.Name;
+            ModelState.Clear();
 
-                return RedirectToAction("Index");
-            }
-            catch
+            if (!ModelState.IsValid)
             {
-                return View();
+                return View(newItem);
+            }
+
+            var addedItem = m.TrackAdd(newItem);
+
+            if (addedItem == null)
+            {
+                return View(newItem);
+            }
+            else
+            {
+                return RedirectToAction("details", new { id = addedItem.Id });
             }
         }
 
-        // GET: Tracks/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Tracks/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Tracks/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Tracks/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }

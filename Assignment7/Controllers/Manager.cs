@@ -115,10 +115,39 @@ namespace Assignment7.Controllers
         // The important idea is that you check for existing data first
         // Call this method from a controller action/method
 
-        public bool LoadData()
+
+        public IEnumerable<TrackBase> TrackGetAll()
         {
-            return true;
+            return Mapper.Map<IEnumerable<TrackBase>>(ds.Tracks.OrderBy(a => a.Name));
         }
 
+        public TrackBase TrackGetById(int? id)
+        {
+            var o = ds.Tracks.Find(id);
+            return (o == null) ? null : Mapper.Map<TrackBase>(o);
+        }
+
+        public TrackBase TrackAdd(TrackAdd newItem)
+        {
+            var addedItem = ds.Tracks.Add(Mapper.Map<Track>(newItem));
+            ds.SaveChanges();
+
+            return (addedItem == null) ? null : Mapper.Map<TrackBase>(addedItem);
+        }
+
+        public IEnumerable<TrackDetails> TrackDetailsGetAll()
+        {
+            return Mapper.Map<IEnumerable<TrackDetails>>
+                (ds.Tracks.Include("Tracks").OrderBy(a => a.Name));
+        }
+
+        public TrackDetails TrackDetailsGetById(int id)
+        {
+            // Attempt to fetch the object
+            var o = ds.Tracks.Include("Albums").SingleOrDefault(e => e.Id == id);
+
+            // Return the result, or null if not found
+            return (o == null) ? null : Mapper.Map<TrackDetails>(o);
+        }
     }
 }
