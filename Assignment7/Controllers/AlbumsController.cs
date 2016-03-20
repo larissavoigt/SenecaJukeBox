@@ -54,17 +54,23 @@ namespace Assignment7.Controllers
 
         // POST: Albums/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(AlbumEditArtists album)
         {
-            try
+            if (!ModelState.IsValid)
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                return View(album);
             }
-            catch
+
+            var addedItem = m.AlbumEditArtists(album);
+
+            if (addedItem == null)
             {
-                return View();
+
+                return View(album);
+            }
+            else
+            {
+                return RedirectToAction("details", new { id = addedItem.Id });
             }
         }
 

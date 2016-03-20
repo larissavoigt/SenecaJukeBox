@@ -133,41 +133,21 @@ namespace Assignment7.Controllers
             return (o == null) ? null : Mapper.Map<AlbumWithArtists>(o);
         }
 
-        // Edit a job duty's list of Artists
+        // Create a new album with artists
         public AlbumWithArtists AlbumEditArtists(AlbumEditArtists newItem)
         {
-            // Attempt to fetch the object
 
-            // When editing an object with a to-many collection,
-            // and you wish to edit the collection,
-            // MUST fetch its associated collection
-            var o = ds.Albums.Include("Artists")
-                .SingleOrDefault(e => e.Id == newItem.Id);
+            var o = ds.Albums.Add(Mapper.Map<Album>(newItem));
 
-            if (o == null)
+            foreach (var item in newItem.ArtistIds)
             {
-                // Problem - object was not found, so return
-                return null;
+                var a = ds.Artists.Find(item);
+                o.Artists.Add(a);
             }
-            else
-            {
-                // Update the object with the incoming values
 
-                // First, clear out the existing collection
-                o.Artists.Clear();
+            ds.SaveChanges();
 
-                // Then, go through the incoming items
-                // For each one, add to the fetched object's collection
-                foreach (var item in newItem.ArtistIds)
-                {
-                    var a = ds.Artists.Find(item);
-                    o.Artists.Add(a);
-                }
-                // Save changes
-                ds.SaveChanges();
-
-                return Mapper.Map<AlbumWithArtists>(o);
-            }
+            return (o == null) ? null : Mapper.Map<AlbumWithArtists>(o);
         }
 
         // Attention - 13 - Add some programmatically-generated objects to the data store
