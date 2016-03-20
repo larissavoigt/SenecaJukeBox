@@ -76,7 +76,7 @@ namespace Assignment7.Controllers
         public IEnumerable<AlbumWithArtists> AlbumGetAllWithArtists()
         {
             return Mapper.Map<IEnumerable<AlbumWithArtists>>
-                (ds.Albums.Include("Artists").OrderBy(a => a.ReleaseDate));
+                (ds.Albums.Include("Artists").OrderBy(a => a.Name));
         }
 
         public AlbumWithArtists AlbumGetByIdWithDetail(int id)
