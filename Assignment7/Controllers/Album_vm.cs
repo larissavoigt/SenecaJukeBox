@@ -17,7 +17,7 @@ namespace Assignment7.Controllers
         public string Name { get; set; }
 
         [Required, StringLength(150)]
-        [Display(Name = "Executive")]
+        [Display(Name = "Coordinator")]
         public string Coordinator { get; set; }
 
         [Required]

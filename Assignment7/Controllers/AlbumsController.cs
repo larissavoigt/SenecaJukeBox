@@ -33,7 +33,7 @@ namespace Assignment7.Controllers
         }
 
         // GET: Albums/Create
-        [Authorize(Roles = "User")]
+        [Authorize(Roles = "Coordinator")]
         public ActionResult Create(int? id)
         {
             // Attempt to fetch the matching object
@@ -69,21 +69,24 @@ namespace Assignment7.Controllers
         }
 
         // POST: Albums/Create
-        [Authorize(Roles = "User")]
+        [Authorize(Roles = "Coordinator")]
         [HttpPost]
-        public ActionResult Create(AlbumAdd album)
+        public ActionResult Create(AlbumAdd newItem)
         {
+            newItem.Coordinator = HttpContext.User.Identity.Name;
+            ModelState.Clear();
+
             if (!ModelState.IsValid)
             {
-                return View(album);
+                return View(newItem);
             }
 
-            var addedItem = m.AlbumEditArtists(album);
+            var addedItem = m.AlbumEditArtists(newItem);
 
             if (addedItem == null)
             {
 
-                return View(album);
+                return View(newItem);
             }
             else
             {
