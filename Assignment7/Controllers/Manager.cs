@@ -58,38 +58,38 @@ namespace Assignment7.Controllers
             return (addedItem == null) ? null : Mapper.Map<ArtistBase>(addedItem);
         }
 
-        public IEnumerable<ArtistWithAlbums> ArtistGetAllWithAlbums()
+        public IEnumerable<ArtistDetails> ArtistDetailsGetAll()
         {
-            return Mapper.Map<IEnumerable<ArtistWithAlbums>>
+            return Mapper.Map<IEnumerable<ArtistDetails>>
                 (ds.Artists.Include("Albums").OrderBy(a => a.Name));
         }
 
-        public ArtistWithAlbums ArtistGetByIdWithDetail(int id)
+        public ArtistDetails ArtistDetailsGetById(int id)
         {
             // Attempt to fetch the object
             var o = ds.Artists.Include("Albums").SingleOrDefault(e => e.Id == id);
 
             // Return the result, or null if not found
-            return (o == null) ? null : Mapper.Map<ArtistWithAlbums>(o);
+            return (o == null) ? null : Mapper.Map<ArtistDetails>(o);
         }
 
-        public IEnumerable<AlbumWithArtists> AlbumGetAllWithArtists()
+        public IEnumerable<AlbumDetails> AlbumDetailsGetAll()
         {
-            return Mapper.Map<IEnumerable<AlbumWithArtists>>
-                (ds.Albums.Include("Artists").OrderBy(a => a.Name));
+            return Mapper.Map<IEnumerable<AlbumDetails>>
+                (ds.Albums.Include("Artists").Include("Tracks").OrderBy(a => a.Name));
         }
 
-        public AlbumWithArtists AlbumGetByIdWithDetail(int id)
+        public AlbumDetails AlbumDetailsGetById(int id)
         {
             // Attempt to fetch the object
-            var o = ds.Albums.Include("Artists").SingleOrDefault(a => a.Id == id);
+            var o = ds.Albums.Include("Artists").Include("Tracks").SingleOrDefault(a => a.Id == id);
 
             // Return the result, or null if not found
-            return (o == null) ? null : Mapper.Map<AlbumWithArtists>(o);
+            return (o == null) ? null : Mapper.Map<AlbumDetails>(o);
         }
 
         // Create a new album with artists
-        public AlbumWithArtists AlbumEditArtists(AlbumAdd newItem)
+        public AlbumDetails AlbumDetailsAdd(AlbumAdd newItem)
         {
 
             var o = ds.Albums.Add(Mapper.Map<Album>(newItem));
@@ -102,7 +102,7 @@ namespace Assignment7.Controllers
 
             ds.SaveChanges();
 
-            return (o == null) ? null : Mapper.Map<AlbumWithArtists>(o);
+            return (o == null) ? null : Mapper.Map<AlbumDetails>(o);
         }
 
         public IEnumerable<GenreBase> GenreGetAll()

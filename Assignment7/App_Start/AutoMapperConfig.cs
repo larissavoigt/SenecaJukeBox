@@ -19,11 +19,11 @@ namespace Assignment7
             Mapper.CreateMap<Models.Artist, Controllers.ArtistBase>();
             Mapper.CreateMap<Controllers.ArtistAdd, Models.Artist>();
             Mapper.CreateMap<Controllers.ArtistAddForm, Models.Artist>();
-            Mapper.CreateMap<Models.Artist, Controllers.ArtistWithAlbums>();
+            Mapper.CreateMap<Models.Artist, Controllers.ArtistDetails>();
 
             // Albums
             Mapper.CreateMap<Models.Album, Controllers.AlbumBase>();
-            Mapper.CreateMap<Models.Album, Controllers.AlbumWithArtists>();
+            Mapper.CreateMap<Models.Album, Controllers.AlbumDetails>();
             Mapper.CreateMap<Controllers.AlbumAdd, Models.Album>();
             Mapper.CreateMap<Controllers.AlbumBase, Controllers.AlbumAddForm>();
 

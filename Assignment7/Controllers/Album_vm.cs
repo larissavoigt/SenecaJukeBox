@@ -34,9 +34,9 @@ namespace Assignment7.Controllers
     }
 
 
-    public class AlbumWithArtists : AlbumBase
+    public class AlbumDetails : AlbumBase
     {
-        public AlbumWithArtists()
+        public AlbumDetails()
         {
             Artists = new List<ArtistBase>();
         }
