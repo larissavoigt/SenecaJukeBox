@@ -23,28 +23,7 @@ namespace Assignment7.Controllers
         [Required]
         public string Genre { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:MMM dd, yyyy}")]
-        [Display(Name = "Release Date")]
-        public DateTime ReleaseDate { get; set; }
-
-        [Required, StringLength(150)]
-        [Display(Name = "Album Cover")]
-        public string UrlAlbum { get; set; }
-    }
-
-    public class AlbumAddForm
-    {
-        [Required, StringLength(150)]
-        [Display(Name = "Name")]
-        public string Name { get; set; }
-
-        [Required, StringLength(150)]
-        [Display(Name = "Executive")]
-        public string Coordinator { get; set; }
-
-        [Required]
-        public string Genre { get; set; }
-
+        [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MMM dd, yyyy}")]
         [Display(Name = "Release Date")]
         public DateTime ReleaseDate { get; set; }
@@ -98,6 +77,7 @@ namespace Assignment7.Controllers
         [Required]
         public string Genre { get; set; }
 
+        [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MMM dd, yyyy}")]
         [Display(Name = "Release Date")]
         public DateTime ReleaseDate { get; set; }
@@ -112,14 +92,12 @@ namespace Assignment7.Controllers
     }
 
     // Data submitted by the browser user
-    public class AlbumEditArtists
+    public class AlbumEditArtists : AlbumAdd
     {
         public AlbumEditArtists()
         {
             ArtistIds = new List<int>();
         }
-
-        public int Id { get; set; }
 
         // Incoming collection of selected Artist identifiers
         public IEnumerable<int> ArtistIds { get; set; }

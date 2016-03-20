@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 // new...
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Assignment7.Models
 {
@@ -33,6 +34,7 @@ namespace Assignment7.Models
 
         public string BirthName { get; set; }
 
+        [Column(TypeName = "DateTime2")]
         public DateTime BirthOrStartDate { get; set; }
 
         public string Executive { get; set; }
@@ -64,6 +66,7 @@ namespace Assignment7.Models
 
         public string Genre { get; set; }
 
+        [Column(TypeName = "DateTime2")]
         public DateTime ReleaseDate { get; set; }
 
         public string UrlAlbum { get; set; }

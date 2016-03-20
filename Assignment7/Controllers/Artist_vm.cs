@@ -16,7 +16,8 @@ namespace Assignment7.Controllers
         [Display(Name = "Birth Name")]
         public string BirthName { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:MMM dd, yyyy}")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MMM dd, yyyy}")]
         [Display(Name = "Birth or Start Date")]
         public DateTime BirthOrStartDate { get; set; }
 
@@ -40,7 +41,8 @@ namespace Assignment7.Controllers
         [Display(Name = "Birth Name")]
         public string BirthName { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:MMM dd, yyyy}")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MMM dd, yyyy}")]
         [Display(Name = "Birth or Start Date")]
         public DateTime BirthOrStartDate { get; set; }
 
@@ -60,21 +62,9 @@ namespace Assignment7.Controllers
         public string UrlArtist { get; set; }
     }
 
-    public class ArtistAdd
+    public class ArtistAdd : ArtistBase
     {
-        public int Id { get; set; }
-
-        public string BirthName { get; set; }
-
-        public DateTime BirthOrStartDate { get; set; }
-
-        public string Executive { get; set; }
-
-        public string Genre { get; set; }
-
-        public string Name { get; set; }
-
-        public string UrlArtist { get; set; }
+  
     }
 
     public class ArtistWithAlbums : ArtistBase
