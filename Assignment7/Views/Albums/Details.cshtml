@@ -50,7 +50,7 @@
                 <ul class="list-unstyled">
                     @foreach (var item in Model.Artists)
             {
-                        <li>@item.Name</li>
+                        <li>@Html.ActionLink(item.Name, "Details", "Artists", new { id = item.Id }, null)</li>
                     }
                 </ul>
             </dd>

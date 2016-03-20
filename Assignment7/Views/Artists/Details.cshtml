@@ -1,4 +1,4 @@
-﻿@model Assignment7.Controllers.ArtistBase
+﻿@model Assignment7.Controllers.ArtistWithAlbums
 
 @{
     ViewBag.Title = Model.Name;
@@ -14,47 +14,67 @@
     <h1>@Model.Name</h1>
 </div>
 
-<div>
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.BirthName)
-        </dt>
+<div class="row">
 
-        <dd>
-            @Html.DisplayFor(model => model.BirthName)
-        </dd>
+    <div class="col-md-8">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.BirthOrStartDate)
-        </dt>
+        <dl class="dl-horizontal">
 
-        <dd>
-            @Html.DisplayFor(model => model.BirthOrStartDate)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.BirthName)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Executive)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.BirthName)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Executive)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.BirthOrStartDate)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Genre)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.BirthOrStartDate)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Genre)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Executive)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.UrlArtist)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Executive)
+            </dd>
 
-        <dd>
-            <img src="@Model.UrlArtist" width="200" class="thumbnail" />
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Genre)
+            </dt>
 
-    </dl>
+            <dd>
+                @Html.DisplayFor(model => model.Genre)
+            </dd>
+            
+            <dt>
+                @Html.DisplayNameFor(model => model.Albums)
+            </dt>
+
+            <dd>
+                <ul class="list-unstyled">
+                    @foreach (var item in Model.Albums)
+            {
+                        <li>@Html.ActionLink(item.Name, "Details", "Albums", new { id = item.Id }, null)</li>
+                    }
+                </ul>
+            </dd>
+
+        </dl>
+    </div>
+
+    <div class="col-md-4">
+        <div class="thumbnail">
+            <img src="@Model.UrlArtist" />
+            <div class="caption text-center">
+                @Html.DisplayNameFor(model => model.UrlArtist)
+            </div>
+        </div>
+    </div>
+
 </div>
