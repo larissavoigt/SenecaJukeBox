@@ -49,11 +49,7 @@ namespace Assignment7.Migrations
                 "World Music / Beats"
             };
 
-            foreach (var name in genres)
-            {
-                context.Genres.AddOrUpdate(g => g.Name, new Genre { Name = name });
-            }
-            
+            genres.ForEach(g => context.Genres.AddOrUpdate(p => p.Name, new Genre { Name = g }));
         }
     }
 }
