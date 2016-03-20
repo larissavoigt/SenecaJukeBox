@@ -18,10 +18,15 @@ namespace Assignment7.Migrations
 
         protected override void Seed(Assignment7.Models.ApplicationDbContext context)
         {
+            Random rnd = new Random();
+
             AddOrUpdateUser(context, "executive@senecajukebox.com", new List<string> { "Executive", "Coordinator", "Clerk", "Staff" });
             AddOrUpdateUser(context, "coordinator@senecajukebox.com", new List<string> { "Coordinator", "Clerk", "Staff" });
             AddOrUpdateUser(context, "clerk@senecajukebox.com", new List<string> { "Clerk", "Staff" });
             AddOrUpdateUser(context, "staff@senecajukebox.com", new List<string> { "Staff" });
+
+            var coordinators = new List<string> { "executive@senecajukebox.com", "coordinator@senecajukebox.com" };
+            var clerks = new List<string> { "executive@senecajukebox.com", "coordinator@senecajukebox.com", "clerk@senecajukebox.com" };
 
             var genres = new List<string> {
                 "Alternative",
@@ -165,8 +170,7 @@ namespace Assignment7.Migrations
                     Name = "The Fame",
                     Genre = "Pop",
                     UrlAlbum = "http://www.ladygaga.com/sites/g/files/g20001281/f/styles/300x300/public/201306/00602517891388.jpg?itok=S3SusKRe",
-                    ReleaseDate = new System.DateTime(2008, 8, 19),
-                    Coordinator = "coordinator@senecajukebox.com"
+                    ReleaseDate = new System.DateTime(2008, 8, 19)
                 },
 
                 new Album
@@ -174,8 +178,7 @@ namespace Assignment7.Migrations
                     Name = "Hot Space",
                     Genre = "Rock",
                     UrlAlbum = "https://upload.wikimedia.org/wikipedia/en/3/3c/Queen_Hot_Space.png",
-                    ReleaseDate = new System.DateTime(1982, 5, 21),
-                    Coordinator = "coordinator@senecajukebox.com"
+                    ReleaseDate = new System.DateTime(1982, 5, 21)
                 },
 
                 new Album
@@ -183,8 +186,7 @@ namespace Assignment7.Migrations
                     Name = "Falling into You",
                     Genre = "Pop",
                     UrlAlbum = "https://ukutabs.com/uploads/2012/09/Falling-Into-You.jpg",
-                    ReleaseDate = new System.DateTime(1996, 3, 8),
-                    Coordinator = "coordinator@senecajukebox.com"
+                    ReleaseDate = new System.DateTime(1996, 3, 8)
                 },
 
                 new Album
@@ -192,8 +194,7 @@ namespace Assignment7.Migrations
                     Name = "Let's Talk About Love",
                     Genre = "Pop",
                     UrlAlbum = "https://ukutabs.com/uploads/2013/05/Lets-Talk-About-Love.jpg",
-                    ReleaseDate = new System.DateTime(1997, 11, 14),
-                    Coordinator = "coordinator@senecajukebox.com"
+                    ReleaseDate = new System.DateTime(1997, 11, 14)
                 },
 
                 new Album
@@ -201,8 +202,7 @@ namespace Assignment7.Migrations
                     Name = "Pin Ups",
                     Genre = "Rock",
                     UrlAlbum = "https://upload.wikimedia.org/wikipedia/en/b/be/PinUps.jpg",
-                    ReleaseDate = new System.DateTime(1973, 10, 19),
-                    Coordinator = "coordinator@senecajukebox.com"
+                    ReleaseDate = new System.DateTime(1973, 10, 19)
                 },
 
                 new Album
@@ -210,12 +210,12 @@ namespace Assignment7.Migrations
                     Name = "What's My Name?",
                     Genre = "R&B",
                     UrlAlbum = "http://music-video-buzz.com/wp-content/uploads/2011/03/rihanna-whats_my_name-feat-drake-fanmade1-500x500-300x300.png",
-                    ReleaseDate = new System.DateTime(2010, 10, 26),
-                    Coordinator = "coordinator@senecajukebox.com"
+                    ReleaseDate = new System.DateTime(2010, 10, 26)
                 },
 
             };
 
+            albums.ForEach(a => a.Coordinator = coordinators[rnd.Next(coordinators.Count)]); // add random coordinator
             albums.ForEach(a => context.Albums.AddOrUpdate(r => r.Name, a));
 
             context.SaveChanges();
