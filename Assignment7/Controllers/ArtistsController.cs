@@ -36,7 +36,14 @@ namespace Assignment7.Controllers
         [Authorize(Roles = "User")]
         public ActionResult Create()
         {
-            return View();
+            var form = new ArtistAddForm();
+
+            form.GenreList = new SelectList
+                    (items: m.GenreGetAll(),
+                    dataValueField: "Name",
+                    dataTextField: "Name");
+
+            return View(form);
         }
 
         // POST: Artists/Create

@@ -14,17 +14,21 @@ namespace Assignment7
             // Add map creation statements here
             // Mapper.CreateMap< FROM , TO >();
 #pragma warning disable CS0618
-            /* Artists */
+
+            // Artists 
             Mapper.CreateMap<Models.Artist, Controllers.ArtistBase>();
             Mapper.CreateMap<Controllers.ArtistAdd, Models.Artist>();
+            Mapper.CreateMap<Controllers.ArtistAddForm, Models.Artist>();
             Mapper.CreateMap<Models.Artist, Controllers.ArtistWithAlbums>();
-            Mapper.CreateMap<Controllers.ArtistBase, Controllers.ArtistEditAlbumsForm>();
 
             // Albums
             Mapper.CreateMap<Models.Album, Controllers.AlbumBase>();
             Mapper.CreateMap<Models.Album, Controllers.AlbumWithArtists>();
             Mapper.CreateMap<Controllers.AlbumEditArtists, Models.Album>();
             Mapper.CreateMap<Controllers.AlbumBase, Controllers.AlbumEditArtistsForm>();
+
+            // Genres
+            Mapper.CreateMap<Models.Genre, Controllers.GenreBase>();
 
 #pragma warning restore CS0618
         }

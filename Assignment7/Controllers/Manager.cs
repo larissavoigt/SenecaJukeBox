@@ -105,7 +105,7 @@ namespace Assignment7.Controllers
             return (o == null) ? null : Mapper.Map<AlbumWithArtists>(o);
         }
 
-        public IEnumerable<GenreBase> Genres()
+        public IEnumerable<GenreBase> GenreGetAll()
         {
             return Mapper.Map<IEnumerable<GenreBase>>(ds.Genres.OrderBy(a => a.Name));
         }
