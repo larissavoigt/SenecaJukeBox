@@ -24,6 +24,7 @@ namespace Assignment7.Controllers
         }
 
         // GET: Albums/Create
+        [Authorize(Roles = "User")]
         public ActionResult Create(int? id)
         {
             // Attempt to fetch the matching object
@@ -54,6 +55,7 @@ namespace Assignment7.Controllers
         }
 
         // POST: Albums/Create
+        [Authorize(Roles = "User")]
         [HttpPost]
         public ActionResult Create(AlbumEditArtists album)
         {
