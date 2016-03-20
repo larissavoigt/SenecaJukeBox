@@ -13,7 +13,6 @@ namespace Assignment7.Controllers
 
         public ActionResult Index()
         {
-            m.LoadData();
             return View();
         }
     }

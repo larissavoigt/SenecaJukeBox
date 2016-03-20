@@ -1,6 +1,8 @@
 namespace Assignment7.Migrations
 {
+    using Models;
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
@@ -26,6 +28,32 @@ namespace Assignment7.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
+            var genres = new List<string> {
+                "Alternative",
+                "Blues",
+                "Classical",
+                "Country",
+                "Dance",
+                "Easy Listening",
+                "Electronic",
+                "Hip Hop / Rap",
+                "Indie Pop",
+                "Jazz",
+                "New Age",
+                "Opera",
+                "Pop",
+                "R&B / Soul",
+                "Reggae",
+                "Rock",
+                "World Music / Beats"
+            };
+
+            foreach (var name in genres)
+            {
+                context.Genres.AddOrUpdate(g => g.Name, new Genre { Name = name });
+            }
+            
         }
     }
 }

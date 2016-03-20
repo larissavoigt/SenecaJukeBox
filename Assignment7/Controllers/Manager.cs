@@ -117,36 +117,6 @@ namespace Assignment7.Controllers
 
         public bool LoadData()
         {
-            // Return if there's existing data
-
-            if (ds.Genres.Count() > 0) { return false; }
-
-            var genres = new List<string> {
-                "Alternative",
-                "Blues",
-                "Classical",
-                "Country",
-                "Dance",
-                "Easy Listening",
-                "Electronic",
-                "Hip Hop / Rap",
-                "Indie Pop",
-                "Jazz",
-                "New Age",
-                "Opera",
-                "Pop",
-                "R&B / Soul",
-                "Reggae",
-                "Rock",
-                "World Music / Beats"
-            };
-
-            foreach (var g in genres)
-            {
-                ds.Genres.Add(new Genre { Name = g });
-                ds.SaveChanges();
-            }
-
             return true;
         }
 
