@@ -15,15 +15,9 @@
 
 <div class="row">
     
-    <div class="col-md-4">
-        <div class="thumbnail">
-            <img src="@Model.UrlAlbum" />
-            <div class="caption text-center">
-                @Html.DisplayNameFor(model => model.UrlAlbum)
-            </div>
-        </div>
+    <div class="col-md-8">
+        
         <dl class="dl-horizontal">
-
             
             <dt>
                 @Html.DisplayNameFor(model => model.Genre)
@@ -48,11 +42,29 @@
                 @Html.DisplayFor(model => model.Coordinator)
             </dd>
 
+            <dt>
+                @Html.DisplayNameFor(model => model.Artists)
+            </dt>
+
+            <dd>
+                <ul class="list-unstyled">
+                    @foreach (var item in Model.Artists)
+            {
+                        <li>@item.Name</li>
+                    }
+                </ul>
+            </dd>
+
         </dl>
     </div>
 
-    <div class="col-md-8">
-
+    <div class="col-md-4">
+        <div class="thumbnail">
+            <img src="@Model.UrlAlbum" />
+            <div class="caption text-center">
+                @Html.DisplayNameFor(model => model.UrlAlbum)
+            </div>
+        </div>
     </div>
     
 </div>
