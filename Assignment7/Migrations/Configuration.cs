@@ -218,8 +218,22 @@ namespace Assignment7.Migrations
             albums.ForEach(a => a.Coordinator = coordinators[rnd.Next(coordinators.Count)]); // add random coordinator
             albums.ForEach(a => context.Albums.AddOrUpdate(r => r.Name, a));
 
+            var tracks = new List<Track> {
+                new Track
+                {
+                    Name = "Hello",
+                    Genre = "Pop",
+                    Composers = "Adele",
+                    YoutubeId = "YQHsXMglC9A"
+                }
+            };
+
+            tracks.ForEach(t => t.Clerk = clerks[rnd.Next(clerks.Count)]); // add random clerk
+            tracks.ForEach(t => context.Tracks.AddOrUpdate(r => r.Name, t));
+
             context.SaveChanges();
 
+            // Artists - Albums association
             AddOrUpdateArtistAlbums(context, "Lady Gaga", "The Fame");
             AddOrUpdateArtistAlbums(context, "Queen", "Hot Space");
             AddOrUpdateArtistAlbums(context, "David Bowie", "Hot Space");
@@ -228,17 +242,31 @@ namespace Assignment7.Migrations
             AddOrUpdateArtistAlbums(context, "David Bowie", "Pin Ups");
             AddOrUpdateArtistAlbums(context, "Rihanna", "What's My Name?");
             AddOrUpdateArtistAlbums(context, "Drake", "What's My Name?");
+
+            // Albums - Tracks association
+            AddOrUpdateAlbumTracks(context, "Pin Ups", "Hello");
         }
 
-        void AddOrUpdateArtistAlbums(Assignment7.Models.ApplicationDbContext context, string artist, string album)
+        void AddOrUpdateArtistAlbums(Assignment7.Models.ApplicationDbContext context, string artistName, string albumName)
         {
-            var art = context.Artists.SingleOrDefault(a => a.Name == artist);
-            var alb = art.Albums.SingleOrDefault(a => a.Name == album);
-            if (alb == null)
+            var artist = context.Artists.SingleOrDefault(a => a.Name == artistName);
+            var album = artist.Albums.SingleOrDefault(a => a.Name == albumName);
+            if (album == null)
             {
-                art.Albums.Add(context.Albums.Single(a => a.Name == album));
+                artist.Albums.Add(context.Albums.Single(a => a.Name == albumName));
             }
                 
+        }
+
+        void AddOrUpdateAlbumTracks(Assignment7.Models.ApplicationDbContext context, string albumName, string trackName)
+        {
+            var album = context.Albums.SingleOrDefault(a => a.Name == albumName);
+            var track = album.Tracks.SingleOrDefault(t => t.Name == trackName);
+            if (track == null)
+            {
+                album.Tracks.Add(context.Tracks.Single(t => t.Name == trackName));
+            }
+
         }
 
         void AddOrUpdateUser(Assignment7.Models.ApplicationDbContext context, string email, List<string> roles)
