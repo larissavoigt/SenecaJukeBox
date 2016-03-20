@@ -123,22 +123,22 @@ namespace Assignment7.Controllers
 
             var genres = new List<string> {
                 "Alternative",
-                 "Blues",
-                 "Classical",
-                 "Country",
-                 "Dance",
-                 "Easy Listening",
-                 "Electronic",
+                "Blues",
+                "Classical",
+                "Country",
+                "Dance",
+                "Easy Listening",
+                "Electronic",
                 "Hip Hop / Rap",
                 "Indie Pop",
                 "Jazz",
-                 "New Age",
-                 "Opera",
-                 "Pop",
-                 "R&B / Soul",
-                 "Reggae",
-                 "Rock",
-                 "World Music / Beats"
+                "New Age",
+                "Opera",
+                "Pop",
+                "R&B / Soul",
+                "Reggae",
+                "Rock",
+                "World Music / Beats"
             };
 
             foreach (var g in genres)
