@@ -18,16 +18,19 @@
                 @Html.DisplayNameFor(model => model.UrlAlbum)
             </th>
             <th class="text-center">
+                # of Tracks
+            </th>
+            <th class="text-center">
                 # of Artists
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Genre)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Coordinator)
+                @Html.DisplayNameFor(model => model.ReleaseDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ReleaseDate)
+                @Html.DisplayNameFor(model => model.Coordinator)
             </th>
             <th></th>
         </tr>
@@ -45,16 +48,19 @@
                    <img src="@item.UrlAlbum" width="200" class="thumbnail" />
                </td>
                <td class="text-center">
+                   @Html.Encode(item.Tracks.Count())
+               </td>
+               <td class="text-center">
                    @Html.Encode(item.Artists.Count())
                </td>
                <td>
                    @Html.DisplayFor(modelItem => item.Genre)
                </td>
                <td>
-                   @Html.DisplayFor(modelItem => item.Coordinator)
+                   @Html.DisplayFor(modelItem => item.ReleaseDate)
                </td>
                <td>
-                   @Html.DisplayFor(modelItem => item.ReleaseDate)
+                   @Html.DisplayFor(modelItem => item.Coordinator)
                </td>
                <td>
                    @Html.ActionLink("Details", "Details", new { id = item.Id })
