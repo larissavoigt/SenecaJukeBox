@@ -53,7 +53,8 @@ namespace Assignment7.Migrations
 
             var artists = new List<Artist>
             {
-                new Artist {
+                new Artist
+                {
                     Name = "Queen",
                     Genre = "Rock",
                     UrlArtist = "http://www.stereoboard.com/images/stories/new/600x400xqueen_eb_121211.jpg.pagespeed.ic.ETqLIKAawN.jpg",
@@ -61,7 +62,8 @@ namespace Assignment7.Migrations
                     Executive = "executive@senecajukebox.com"
                 },
 
-                new Artist {
+                new Artist
+                {
                     Name = "David Bowie",
                     Genre = "Rock",
                     UrlArtist = "http://www.pagesdigital.com/wp-content/uploads/2016/01/1973_drive_aladdin_sane_1000h.jpg",
@@ -70,7 +72,8 @@ namespace Assignment7.Migrations
                     Executive = "executive@senecajukebox.com"
                 },
 
-                new Artist {
+                new Artist
+                {
                     Name = "Daft Punk",
                     Genre = "Electronic",
                     UrlArtist = "http://www.dispatch.com/content/graphics/2013/05/22/2-mus-daft-punk-art-gaqmrm65-12-mus-daft-punk-2-jpg.jpg",
@@ -78,7 +81,8 @@ namespace Assignment7.Migrations
                     Executive = "executive@senecajukebox.com"
                 },
 
-                new Artist {
+                new Artist
+                {
                     Name = "Lady Gaga",
                     Genre = "Pop",
                     UrlArtist = "http://popcrush.com/files/2015/09/lady-gaga-emmys-81.jpg?w=600&h=0&zc=1&s=0&a=t&q=89",
@@ -87,7 +91,8 @@ namespace Assignment7.Migrations
                     Executive = "executive@senecajukebox.com"
                 },
 
-                new Artist {
+                new Artist
+                {
                     Name = "Michael Jackson",
                     Genre = "Pop",
                     UrlArtist = "http://www.keysandchords.com/uploads/3/5/1/8/3518427/2814243_orig.jpg",
@@ -96,7 +101,8 @@ namespace Assignment7.Migrations
                     Executive = "executive@senecajukebox.com"
                 },
 
-                new Artist {
+                new Artist
+                {
                     Name = "Dolly Parton",
                     Genre = "Country",
                     UrlArtist = "https://575717b777ff8d928c6b-704c46a8034042e4fc898baf7b3e75d9.ssl.cf1.rackcdn.com/7678298_see-dolly-parton-through-the-years-in-pictures_38739ad3_m.jpg?bg=80725D",
@@ -105,7 +111,8 @@ namespace Assignment7.Migrations
                     Executive = "executive@senecajukebox.com"
                 },
 
-                new Artist {
+                new Artist
+                {
                     Name = "Tchaikovsky",
                     Genre = "Classical",
                     UrlArtist = "http://www.swarthmore.edu/sites/default/files/styles/slideshow_large/public/assets/images/russian/Russian_Slideshow_Tchaikovsky.jpg?itok=le3Y4ieV",
@@ -114,7 +121,8 @@ namespace Assignment7.Migrations
                     Executive = "executive@senecajukebox.com"
                 },
 
-                new Artist {
+                new Artist
+                {
                     Name = "Madonna",
                     Genre = "Pop",
                     UrlArtist = "http://www1.pictures.zimbio.com/mp/AOvR5SbWDJbl.jpg",
@@ -123,7 +131,8 @@ namespace Assignment7.Migrations
                     Executive = "executive@senecajukebox.com"
                 },
 
-                new Artist {
+                new Artist
+                {
                     Name = "Celine Dion",
                     Genre = "R&B",
                     UrlArtist = "http://www.radioandmusic.com/sites/www.radioandmusic.com/files/images/entertainment/2016/01/21/Celine-Dion3.jpg",
@@ -132,7 +141,8 @@ namespace Assignment7.Migrations
                     Executive = "executive@senecajukebox.com"
                 },
 
-                new Artist {
+                new Artist
+                {
                     Name = "Drake",
                     Genre = "Hip Hop",
                     UrlArtist = "http://www.mtv.com/news/photos/d/drake_complex_100125/01_drake.jpg",
@@ -141,7 +151,8 @@ namespace Assignment7.Migrations
                     Executive = "executive@senecajukebox.com"
                 },
 
-                new Artist {
+                new Artist
+                {
                     Name = "Rihanna",
                     Genre = "Pop",
                     UrlArtist = "https://kiss100.co.ke/wp-content/uploads/2015/03/Rihanna-1.jpg",
@@ -153,6 +164,21 @@ namespace Assignment7.Migrations
             };
 
             artists.ForEach(a => context.Artists.AddOrUpdate(r => r.Name, a));
+
+            var albums = new List<Album> {
+                new Album
+                {
+                    Name = "The Fame",
+                    Genre = "Pop",
+                    UrlAlbum = "",
+                    ReleaseDate = new System.DateTime(2008, 8, 19),
+                    Coordinator = "coordinator@senecajukebox.com"
+                }
+            };
+
+            albums.ForEach(a => context.Albums.AddOrUpdate(r => r.Name, a));
+
+
         }
     }
 }
