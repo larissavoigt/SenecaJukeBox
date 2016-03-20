@@ -1,5 +1,7 @@
 namespace Assignment7.Migrations
 {
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
     using Models;
     using System;
     using System.Collections.Generic;
@@ -16,18 +18,10 @@ namespace Assignment7.Migrations
 
         protected override void Seed(Assignment7.Models.ApplicationDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+            AddOrUpdateUser(context, "executive@senecajukebox.com", new List<string> { "Executive", "Coordinator", "Clerk", "Staff" });
+            AddOrUpdateUser(context, "coordinator@senecajukebox.com", new List<string> { "Coordinator", "Clerk", "Staff" });
+            AddOrUpdateUser(context, "clerk@senecajukebox.com", new List<string> { "Clerk", "Staff" });
+            AddOrUpdateUser(context, "staff@senecajukebox.com", new List<string> { "Staff" });
 
             var genres = new List<string> {
                 "Alternative",
@@ -178,6 +172,8 @@ namespace Assignment7.Migrations
 
             albums.ForEach(a => context.Albums.AddOrUpdate(r => r.Name, a));
 
+            context.SaveChanges();
+
             AddOrUpdateArtistAlbums(context, "Lady Gaga", "The Fame");
             
         }
@@ -191,6 +187,34 @@ namespace Assignment7.Migrations
                 art.Albums.Add(context.Albums.Single(a => a.Name == album));
             }
                 
+        }
+
+        void AddOrUpdateUser(Assignment7.Models.ApplicationDbContext context, string email, List<string> roles)
+        {
+            foreach (var role in roles)
+            {
+                if (!context.Roles.Any(r => r.Name == role))
+                {
+                    var store = new RoleStore<IdentityRole>(context);
+                    var manager = new RoleManager<IdentityRole>(store);
+                    manager.Create(new IdentityRole { Name = role });
+                }
+            }
+
+            if (!context.Users.Any(u => u.UserName == email))
+            {
+                var store = new UserStore<ApplicationUser>(context);
+                var manager = new UserManager<ApplicationUser>(store);
+                var user = new ApplicationUser { UserName = email };
+
+                manager.Create(user, "Passw0rd!");
+
+                foreach (var role in roles)
+                {
+                    manager.AddToRole(user.Id, role);
+                }
+                
+            }
         }
     }
 }
