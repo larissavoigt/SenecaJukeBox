@@ -33,6 +33,8 @@ namespace Assignment7.Models
 
         public DbSet<Album> Albums { get; set; }
 
+        public DbSet<Track> Tracks { get; set; }
+
         public DbSet<Genre> Genres { get; set; }
 
         // Turn OFF cascade delete, which is (unfortunately) the default setting
@@ -55,6 +57,12 @@ namespace Assignment7.Models
              .Map(t => t.MapLeftKey("ArtistId")
              .MapRightKey("AlbumId")
              .ToTable("AlbumArtists"));
+
+            modelBuilder.Entity<Album>()
+             .HasMany(album => album.Tracks).WithMany(track => track.Albums)
+             .Map(t => t.MapLeftKey("AlbumId")
+             .MapRightKey("TrackId")
+             .ToTable("TrackAlbums"));
         }
 
         public static ApplicationDbContext Create()
