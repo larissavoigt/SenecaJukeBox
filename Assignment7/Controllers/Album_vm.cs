@@ -82,6 +82,7 @@ namespace Assignment7.Controllers
         [Display(Name = "Release Date")]
         public DateTime ReleaseDate { get; set; }
 
+        [DataType(DataType.Url)]
         [Required, StringLength(150)]
         [Display(Name = "Album Cover")]
         public string UrlAlbum { get; set; }
@@ -89,6 +90,8 @@ namespace Assignment7.Controllers
         // Attention - Multiple select requires a MultiSelectList object
         [Display(Name = "Artist List")]
         public MultiSelectList ArtistList { get; set; }
+
+        public SelectList GenreList { get; set; }
     }
 
     // Data submitted by the browser user

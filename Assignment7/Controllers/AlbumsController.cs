@@ -58,6 +58,11 @@ namespace Assignment7.Controllers
                         selectedValues: selectedValues,
                         disabledValues: selectedValues);
 
+                form.GenreList = new SelectList
+                    (items: m.GenreGetAll(),
+                    dataValueField: "Name",
+                    dataTextField: "Name");
+
                 return View(form);
             }
 
