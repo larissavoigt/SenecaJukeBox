@@ -49,7 +49,20 @@ namespace Assignment7.Migrations
                 "World Music / Beats"
             };
 
-            genres.ForEach(g => context.Genres.AddOrUpdate(p => p.Name, new Genre { Name = g }));
+            genres.ForEach(g => context.Genres.AddOrUpdate(r => r.Name, new Genre { Name = g }));
+
+            var artists = new List<Artist>
+            {
+                new Artist {
+                    Name = "Queen",
+                    Genre = "Rock",
+                    UrlArtist = "http://www.stereoboard.com/images/stories/new/600x400xqueen_eb_121211.jpg.pagespeed.ic.ETqLIKAawN.jpg",
+                    BirthOrStartDate = new System.DateTime(1970, 1, 1),
+                    Executive = "executive@senecajukebox.com"
+                }
+            };
+
+            artists.ForEach(a => context.Artists.AddOrUpdate(r => r.Name, a));
         }
     }
 }
