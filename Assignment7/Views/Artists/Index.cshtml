@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Assignment7.Controllers.ArtistWithAlbums>
+﻿@model IEnumerable<Assignment7.Controllers.ArtistDetails>
 
 @{
     ViewBag.Title = "All Artists";
@@ -43,7 +43,7 @@
     </thead>
 
 <tbody>
-    @foreach (Assignment7.Controllers.ArtistWithAlbums item in Model)
+    @foreach (var item in Model)
     {
         <tr>
             <td>
