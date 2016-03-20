@@ -167,7 +167,53 @@ namespace Assignment7.Migrations
                     UrlAlbum = "",
                     ReleaseDate = new System.DateTime(2008, 8, 19),
                     Coordinator = "coordinator@senecajukebox.com"
-                }
+                },
+
+                new Album
+                {
+                    Name = "Hot Space",
+                    Genre = "Rock",
+                    UrlAlbum = "https://upload.wikimedia.org/wikipedia/en/3/3c/Queen_Hot_Space.png",
+                    ReleaseDate = new System.DateTime(1982, 5, 21),
+                    Coordinator = "coordinator@senecajukebox.com"
+                },
+
+                new Album
+                {
+                    Name = "Falling into You",
+                    Genre = "Pop",
+                    UrlAlbum = "https://cdn.discogs.com/3X6uKvk6eVzPDFfg5XkScSsWv3U=/fit-in/300x300/filters:strip_icc():format(jpeg):mode_rgb()/discogs-images/R-1974065-1256055425.jpeg.jpg",
+                    ReleaseDate = new System.DateTime(1996, 3, 8),
+                    Coordinator = "coordinator@senecajukebox.com"
+                },
+
+                new Album
+                {
+                    Name = "Let's Talk About Love",
+                    Genre = "Pop",
+                    UrlAlbum = "https://ukutabs.com/uploads/2013/05/Lets-Talk-About-Love.jpg",
+                    ReleaseDate = new System.DateTime(1997, 11, 14),
+                    Coordinator = "coordinator@senecajukebox.com"
+                },
+
+                new Album
+                {
+                    Name = "Pin Ups",
+                    Genre = "Rock",
+                    UrlAlbum = "https://upload.wikimedia.org/wikipedia/en/b/be/PinUps.jpg",
+                    ReleaseDate = new System.DateTime(1973, 10, 19),
+                    Coordinator = "coordinator@senecajukebox.com"
+                },
+
+                new Album
+                {
+                    Name = "What's My Name?",
+                    Genre = "R&B",
+                    UrlAlbum = "http://music-video-buzz.com/wp-content/uploads/2011/03/rihanna-whats_my_name-feat-drake-fanmade1-500x500-300x300.png",
+                    ReleaseDate = new System.DateTime(2010, 10, 26),
+                    Coordinator = "coordinator@senecajukebox.com"
+                },
+
             };
 
             albums.ForEach(a => context.Albums.AddOrUpdate(r => r.Name, a));
@@ -175,7 +221,13 @@ namespace Assignment7.Migrations
             context.SaveChanges();
 
             AddOrUpdateArtistAlbums(context, "Lady Gaga", "The Fame");
-            
+            AddOrUpdateArtistAlbums(context, "Queen", "Hot Space");
+            AddOrUpdateArtistAlbums(context, "David Bowie", "Hot Space");
+            AddOrUpdateArtistAlbums(context, "Celine Dion", "Falling into You");
+            AddOrUpdateArtistAlbums(context, "Celine Dion", "Let's Talk About Love");
+            AddOrUpdateArtistAlbums(context, "David Bowie", "Pin Ups");
+            AddOrUpdateArtistAlbums(context, "Rihanna", "What's My Name?");
+            AddOrUpdateArtistAlbums(context, "Drake", "What's My Name?");
         }
 
         void AddOrUpdateArtistAlbums(Assignment7.Models.ApplicationDbContext context, string artist, string album)
