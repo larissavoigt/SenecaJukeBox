@@ -1,0 +1,58 @@
+﻿@model Assignment7.Controllers.AlbumWithArtists
+
+@{
+    ViewBag.Title = Model.Name;
+}
+
+<div class="page-header">
+    <div class='btn-toolbar pull-right'>
+        <div class='btn-group pull-right'>
+            @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-default" })
+        </div>
+    </div>
+    <h1>@Model.Name</h1>
+</div>
+
+<div class="row">
+    
+    <div class="col-md-4">
+        <div class="thumbnail">
+            <img src="@Model.UrlAlbum" />
+            <div class="caption text-center">
+                @Html.DisplayNameFor(model => model.UrlAlbum)
+            </div>
+        </div>
+        <dl class="dl-horizontal">
+
+            
+            <dt>
+                @Html.DisplayNameFor(model => model.Genre)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Genre)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ReleaseDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ReleaseDate)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Coordinator)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Coordinator)
+            </dd>
+
+        </dl>
+    </div>
+
+    <div class="col-md-8">
+
+    </div>
+    
+</div>

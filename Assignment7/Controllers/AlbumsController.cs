@@ -18,9 +18,18 @@ namespace Assignment7.Controllers
         }
 
         // GET: Albums/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
-            return View();
+            var o = m.AlbumGetByIdWithDetail(id.GetValueOrDefault());
+
+            if (o == null)
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+                return View(o);
+            }
         }
 
         // GET: Albums/Create
