@@ -178,7 +178,19 @@ namespace Assignment7.Migrations
 
             albums.ForEach(a => context.Albums.AddOrUpdate(r => r.Name, a));
 
+            AddOrUpdateArtistAlbums(context, "Lady Gaga", "The Fame");
+            
+        }
 
+        void AddOrUpdateArtistAlbums(Assignment7.Models.ApplicationDbContext context, string artist, string album)
+        {
+            var art = context.Artists.SingleOrDefault(a => a.Name == artist);
+            var alb = art.Albums.SingleOrDefault(a => a.Name == album);
+            if (alb == null)
+            {
+                art.Albums.Add(context.Albums.Single(a => a.Name == album));
+            }
+                
         }
     }
 }
