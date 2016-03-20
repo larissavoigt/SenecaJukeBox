@@ -36,6 +36,7 @@ namespace Assignment7.Controllers
             else
             {
                 ViewBag.ArtistName = a.Name;
+                ViewBag.ArtistId = a.Id;
 
                 var form = new AlbumEditArtistsForm();
                 var selectedValues = new List<int> { a.Id };
