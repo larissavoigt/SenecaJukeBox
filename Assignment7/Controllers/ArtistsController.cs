@@ -20,7 +20,7 @@ namespace Assignment7.Controllers
         // GET: Artists/Details/5
         public ActionResult Details(int? id)
         {
-            var o = m.ArtistGetById(id.GetValueOrDefault());
+            var o = m.ArtistGetByIdWithDetail(id.GetValueOrDefault());
 
             if (o == null)
             {

@@ -73,51 +73,6 @@ namespace Assignment7.Controllers
             return (o == null) ? null : Mapper.Map<ArtistWithAlbums>(o);
         }
 
-        // Attention - Edit an Artist's Albums
-        public ArtistWithAlbums ArtistEditAlbums(ArtistEditAlbums newItem)
-        {
-            // Attempt to fetch the object
-
-            // When editing an object with a to-many collection,
-            // and you wish to edit the collection,
-            // MUST fetch its associated collection
-            var o = ds.Artists.Include("Albums")
-                .SingleOrDefault(e => e.Id == newItem.Id);
-
-            if (o == null)
-            {
-                // Problem - object was not found, so return
-                return null;
-            }
-            else
-            {
-                // Update the object with the incoming values
-
-                // First, clear out the existing collection
-                o.Albums.Clear();
-
-                // Then, go through the incoming items
-                // For each one, add to the fetched object's collection
-                foreach (var item in newItem.AlbumIds)
-                {
-                    var a = ds.Albums.Find(item);
-                    o.Albums.Add(a);
-                }
-                // Save changes
-                ds.SaveChanges();
-
-                return Mapper.Map<ArtistWithAlbums>(o);
-            }
-        }
-
-        // ############################################################
-        // Album
-
-        public IEnumerable<AlbumBase> AlbumGetAll()
-        {
-            return Mapper.Map<IEnumerable<AlbumBase>>(ds.Albums.OrderBy(a => a.ReleaseDate));
-        }
-
         public IEnumerable<AlbumWithArtists> AlbumGetAllWithArtists()
         {
             return Mapper.Map<IEnumerable<AlbumWithArtists>>
