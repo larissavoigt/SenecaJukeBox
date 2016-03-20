@@ -4,14 +4,16 @@
     ViewBag.Title = "Add Album for artist " + ViewBag.ArtistName;
 }
 
-<h2>Add Album for artist @ViewBag.ArtistName</h2>
+<div class="page-header">
+    <h1>Add Album for artist @ViewBag.ArtistName</h1>
+    <h4>Complete the form, and click the Create button</h4>
+</div>
 
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-    <h4>Complete the form, and click the Create button</h4>
-    <hr />
+    
     <div class="row">
         <div class="col-md-6">
             <div class="form-horizontal">
@@ -58,9 +60,9 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.ArtistList, new { @class = "col-md-2 control-label" })
                     <div class="col-md-10">
                         <div class="well">
+                            <h4>@Html.DisplayNameFor(model => model.ArtistList)</h4>
                             <!-- render a checkbox group -->
                             @foreach (var item in Model.ArtistList)
                             {
