@@ -39,10 +39,14 @@ namespace Assignment7.Controllers
         public AlbumDetails()
         {
             Artists = new List<ArtistBase>();
+            Tracks = new List<TrackBase>();
         }
 
-        [Display(Name = "Artists with this album")]
+        [Display(Name = "Artists")]
         public IEnumerable<ArtistBase> Artists { get; set; }
+
+        [Display(Name = "Tracks")]
+        public IEnumerable<TrackBase> Tracks { get; set; }
     }
 
    
@@ -51,9 +55,12 @@ namespace Assignment7.Controllers
         public AlbumAdd()
         {
             ArtistIds = new List<int>();
+            TrackIds = new List<int>();
         }
 
         public IEnumerable<int> ArtistIds { get; set; }
+
+        public IEnumerable<int> TrackIds { get; set; }
     }
 
     public class AlbumAddForm : AlbumBase
@@ -61,6 +68,9 @@ namespace Assignment7.Controllers
 
         [Display(Name = "Artist List")]
         public MultiSelectList ArtistList { get; set; }
+
+        [Display(Name = "Track List")]
+        public MultiSelectList TrackList { get; set; }
 
         public SelectList GenreList { get; set; }
     }

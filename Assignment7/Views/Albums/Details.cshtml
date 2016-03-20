@@ -10,7 +10,7 @@
             @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-default" })
         </div>
     </div>
-    <h1>@Model.Name</h1>
+    <h1>Album - @Model.Name</h1>
 </div>
 
 <div class="row">
@@ -49,10 +49,23 @@
             <dd>
                 <ul class="list-unstyled">
                     @foreach (var item in Model.Artists)
-            {
+                    {
                         <li>@Html.ActionLink(item.Name, "Details", "Artists", new { id = item.Id }, null)</li>
                     }
                 </ul>
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Tracks)
+            </dt>
+
+            <dd>
+                <ol class="list-unstyled">
+                    @foreach (var item in Model.Tracks)
+                    {
+                        <li>@Html.ActionLink(item.Name, "Details", "Tracks", new { id = item.Id }, null)</li>
+                    }
+                </ol>
             </dd>
 
         </dl>

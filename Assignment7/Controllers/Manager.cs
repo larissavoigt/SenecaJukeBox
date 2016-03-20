@@ -100,6 +100,12 @@ namespace Assignment7.Controllers
                 o.Artists.Add(a);
             }
 
+            foreach (var item in newItem.TrackIds)
+            {
+                var a = ds.Tracks.Find(item);
+                o.Tracks.Add(a);
+            }
+
             ds.SaveChanges();
 
             return (o == null) ? null : Mapper.Map<AlbumDetails>(o);

@@ -49,14 +49,19 @@ namespace Assignment7.Controllers
                 ViewBag.ArtistId = a.Id;
 
                 var form = new AlbumAddForm();
-                var selectedValues = new List<int> { a.Id };
+                var artistsSelected = new List<int> { a.Id };
 
                 form.ArtistList = new MultiSelectList
                         (items: m.ArtistGetAll(),
                         dataValueField: "Id",
                         dataTextField: "Name",
-                        selectedValues: selectedValues,
-                        disabledValues: selectedValues);
+                        selectedValues: artistsSelected,
+                        disabledValues: artistsSelected);
+
+                form.TrackList = new MultiSelectList
+                        (items: m.TrackGetAll(),
+                        dataValueField: "Id",
+                        dataTextField: "Name");
 
                 form.GenreList = new SelectList
                     (items: m.GenreGetAll(),
