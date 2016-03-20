@@ -30,6 +30,12 @@ namespace Assignment7
             // Genres
             Mapper.CreateMap<Models.Genre, Controllers.GenreBase>();
 
+            // Tracks
+            Mapper.CreateMap<Models.Track, Controllers.TrackBase>();
+            Mapper.CreateMap<Controllers.TrackAdd, Models.Track>();
+            Mapper.CreateMap<Controllers.TrackAddForm, Models.Track>();
+            Mapper.CreateMap<Models.Track, Controllers.TrackDetails>();
+
 #pragma warning restore CS0618
         }
     }

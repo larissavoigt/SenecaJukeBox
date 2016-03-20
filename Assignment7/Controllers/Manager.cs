@@ -138,7 +138,7 @@ namespace Assignment7.Controllers
         public IEnumerable<TrackDetails> TrackDetailsGetAll()
         {
             return Mapper.Map<IEnumerable<TrackDetails>>
-                (ds.Tracks.Include("Tracks").OrderBy(a => a.Name));
+                (ds.Tracks.Include("Albums").OrderBy(a => a.Name));
         }
 
         public TrackDetails TrackDetailsGetById(int id)
