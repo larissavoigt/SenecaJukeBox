@@ -33,7 +33,7 @@ namespace Assignment7.Controllers
         }
 
         // GET: Artists/Create
-        [Authorize(Roles = "User")]
+        [Authorize(Roles = "Executive")]
         public ActionResult Create()
         {
             var form = new ArtistAddForm();
@@ -48,9 +48,12 @@ namespace Assignment7.Controllers
 
         // POST: Artists/Create
         [HttpPost]
-        [Authorize(Roles = "User")]
+        [Authorize(Roles = "Executive")]
         public ActionResult Create(ArtistAdd newItem)
         {
+            newItem.Executive = HttpContext.User.Identity.Name;
+            ModelState.Clear();
+
             if (!ModelState.IsValid)
             {
                 return View(newItem);
