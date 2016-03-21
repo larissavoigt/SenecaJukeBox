@@ -34,7 +34,9 @@ namespace Assignment7
             Mapper.CreateMap<Models.Track, Controllers.TrackBase>();
             Mapper.CreateMap<Controllers.TrackAdd, Models.Track>();
             Mapper.CreateMap<Controllers.TrackAddForm, Models.Track>();
-            Mapper.CreateMap<Models.Track, Controllers.TrackDetails>();
+            Mapper.CreateMap<Models.Track, Controllers.TrackWithDetail>();
+            Mapper.CreateMap<Controllers.TrackBase, Controllers.TrackEditForm>();
+            Mapper.CreateMap<Controllers.TrackWithDetail, Controllers.TrackEditForm>();
 
 #pragma warning restore CS0618
         }

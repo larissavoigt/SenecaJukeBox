@@ -26,19 +26,6 @@ namespace Assignment7.Controllers
             ds.Configuration.LazyLoadingEnabled = false;
         }
 
-        // Add methods below
-        // Controllers will call these methods
-        // Ensure that the methods accept and deliver ONLY view model objects and collections
-        // The collection return type is almost always IEnumerable<T>
-
-        // Suggested naming convention: Entity + task/action
-        // For example:
-        // ProductGetAll()
-        // ProductGetById()
-        // ProductAdd()
-        // ProductEdit()
-        // ProductDelete()
-
         public IEnumerable<ArtistBase> ArtistGetAll()
         {
             return Mapper.Map<IEnumerable<ArtistBase>>(ds.Artists.OrderBy(a => a.Name));
@@ -116,12 +103,6 @@ namespace Assignment7.Controllers
             return Mapper.Map<IEnumerable<GenreBase>>(ds.Genres.OrderBy(a => a.Name));
         }
 
-        // Attention - 13 - Add some programmatically-generated objects to the data store
-        // Can write one method, or many methods - your decision
-        // The important idea is that you check for existing data first
-        // Call this method from a controller action/method
-
-
         public IEnumerable<TrackBase> TrackGetAll()
         {
             return Mapper.Map<IEnumerable<TrackBase>>(ds.Tracks.OrderBy(a => a.Name));
@@ -137,23 +118,52 @@ namespace Assignment7.Controllers
         {
             var addedItem = ds.Tracks.Add(Mapper.Map<Track>(newItem));
             ds.SaveChanges();
-
             return (addedItem == null) ? null : Mapper.Map<TrackBase>(addedItem);
         }
 
-        public IEnumerable<TrackDetails> TrackDetailsGetAll()
+        public IEnumerable<TrackWithDetail> TrackDetailsGetAll()
         {
-            return Mapper.Map<IEnumerable<TrackDetails>>
+            return Mapper.Map<IEnumerable<TrackWithDetail>>
                 (ds.Tracks.Include("Albums").OrderBy(a => a.Name));
         }
 
-        public TrackDetails TrackDetailsGetById(int id)
+        public TrackWithDetail TrackDetailsGetById(int id)
         {
-            // Attempt to fetch the object
             var o = ds.Tracks.Include("Albums").SingleOrDefault(e => e.Id == id);
+            return (o == null) ? null : Mapper.Map<TrackWithDetail>(o);
+        }
 
-            // Return the result, or null if not found
-            return (o == null) ? null : Mapper.Map<TrackDetails>(o);
+        public TrackWithDetail TrackEdit(TrackEdit newItem)
+        {
+
+            var o = ds.Tracks.SingleOrDefault(t => t.Id == newItem.Id);
+
+            if (o == null)
+            {
+                return null;
+            }
+            else
+            {
+                ds.Entry(o).CurrentValues.SetValues(newItem);
+                ds.SaveChanges();
+                return Mapper.Map<TrackWithDetail>(o);
+            }
+        }
+
+        public bool TrackDelete(int id)
+        {
+            var itemToDelete = ds.Tracks.Find(id);
+
+            if (itemToDelete == null)
+            {
+                return false;
+            }
+            else
+            {
+                ds.Tracks.Remove(itemToDelete);
+                ds.SaveChanges();
+                return true;
+            }
         }
     }
 }

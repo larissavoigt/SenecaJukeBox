@@ -70,5 +70,89 @@ namespace Assignment7.Controllers
             }
         }
 
+        // GET: Tracks/Edit/5
+        [Authorize(Roles = "Clerk")]
+        public ActionResult Edit(int? id)
+        {
+            // Attempt to fetch the matching object
+            var o = m.TrackDetailsGetById(id.GetValueOrDefault());
+
+            if (o == null)
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+                // Create and configure an "edit form"
+
+                // Notice that o is a CustomerBase object
+                // We must map it to a CustomerEditContactInfoForm object
+                // Notice that we can use AutoMapper anywhere, 
+                // and not just in the Manager class!
+                var form = AutoMapper.Mapper.Map<TrackEditForm>(o);
+
+                return View(form);
+            }
+        }
+
+        // POST: Tracks/Edit/5
+        [Authorize(Roles = "Clerk")]
+        [HttpPost]
+        public ActionResult Edit(int? id, TrackEdit newItem)
+        {
+            // Validate the input
+            if (!ModelState.IsValid)
+            {
+                // Our "version 1" approach is to display the "edit form" again
+                return RedirectToAction("edit", new { id = newItem.Id });
+            }
+
+            if (id.GetValueOrDefault() != newItem.Id)
+            {
+                // This appears to be data tampering, so redirect the user away
+                return RedirectToAction("index");
+            }
+
+            // Attempt to do the update
+            var editedItem = m.TrackEdit(newItem);
+
+            if (editedItem == null)
+            {
+                // There was a problem updating the object
+                // Our "version 1" approach is to display the "edit form" again
+                return RedirectToAction("edit", new { id = newItem.Id });
+            }
+            else
+            {
+                // Show the details view, which will have the updated data
+                return RedirectToAction("details", new { id = newItem.Id });
+            }
+        }
+
+        // GET: Tracks/Delete/5
+        [Authorize(Roles = "Clerk")]
+        public ActionResult Delete(int? id)
+        {
+            var itemToDelete = m.TrackDetailsGetById(id.GetValueOrDefault());
+
+            if (itemToDelete == null)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(itemToDelete);
+            }
+        }
+
+        // POST: Tracks/Delete/5
+        [Authorize(Roles = "Clerk")]
+        [HttpPost]
+        public ActionResult Delete(int? id, FormCollection collection)
+        {
+            var result = m.TrackDelete(id.GetValueOrDefault());
+            return RedirectToAction("Index");
+        }
+
     }
 }

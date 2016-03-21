@@ -8,11 +8,8 @@ using System.Web.Mvc;
 namespace Assignment7.Controllers
 {
 
-    public class TrackBase
+    public class TrackAdd
     {
-        [Key]
-        public int Id { get; set; }
-
         [Required, StringLength(150)]
         public string Name { get; set; }
 
@@ -31,19 +28,32 @@ namespace Assignment7.Controllers
         public string YoutubeId { get; set; }
     }
 
-    public class TrackAdd : TrackBase
+    public class TrackBase : TrackAdd
     {
-      
+        [Key]
+        public int Id { get; set; }
     }
 
-    public class TrackAddForm : TrackBase
+
+    public class TrackAddForm : TrackAdd
     {
         public SelectList GenreList { get; set; }
     }
 
-    public class TrackDetails : TrackBase
+    public class TrackEdit : TrackAdd
     {
-        public TrackDetails()
+        [Key]
+        public int Id { get }
+    }
+
+    public class TrackEditForm : TrackEdit
+    {
+        public SelectList GenreList { get; set; }
+    }
+
+    public class TrackWithDetail : TrackBase
+    {
+        public TrackWithDetail()
         {
             Albums = new List<AlbumBase>();
         }
