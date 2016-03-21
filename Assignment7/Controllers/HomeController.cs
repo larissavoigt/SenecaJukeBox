@@ -13,6 +13,7 @@ namespace Assignment7.Controllers
 
         public ActionResult Index()
         {
+            ViewBag.Playlist = m.Playlist();
             return View();
         }
     }

@@ -159,5 +159,19 @@ namespace Assignment7.Controllers
                 return true;
             }
         }
+
+        public string Playlist()
+        {
+            var tracks = ds.Tracks.ToList();
+            if (tracks.Count == 0) return "";
+            Track first = tracks.ElementAt(0);
+            tracks.RemoveAt(0);
+            var url = "https://www.youtube.com/embed/" + first.YoutubeId + "?playlist=";
+            foreach (var t in tracks)
+            {
+                url += t.YoutubeId + ",";
+            }
+            return url.Remove(url.Length - 1);
+        }
     }
 }
