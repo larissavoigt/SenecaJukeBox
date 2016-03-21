@@ -1,0 +1,83 @@
+﻿@model Assignment7.Controllers.TrackWithDetail
+
+@{
+    ViewBag.Title = Model.Name;
+}
+
+<div class="page-header">
+    <div class='btn-toolbar pull-right'>
+        <div class='btn-group pull-right'>  
+            @Html.ActionLink("Edit", "Edit", "Tracks", new { id = Model.Id }, new { @class = "btn btn-default" })
+            @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-default" })
+        </div>
+    </div>
+    <h1>Track - @Model.Name</h1>
+    <h2>Are you sure you want to delete this item?</h2>
+</div>
+
+<div class="row">
+
+    <div class="col-md-6">
+
+        <dl class="dl-horizontal">
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Composers)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Composers)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Clerk)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Clerk)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Genre)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Genre)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Albums)
+            </dt>
+
+            <dd>
+                <ul class="list-unstyled">
+                    @foreach (var item in Model.Albums)
+            {
+                        <li>@Html.ActionLink(item.Name, "Details", "Albums", new { id = item.Id }, null)</li>
+                    }
+                </ul>
+            </dd>
+
+        </dl>
+        <div class="col-md-offset-2 col-md-10">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions">
+                    <input type="submit" value="Delete" class="btn btn-danger" />
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="thumbnail">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/@Model.YoutubeId" frameborder="0" allowfullscreen></iframe>
+            <div class="caption text-center">
+                @Html.DisplayNameFor(model => model.YoutubeId)
+            </div>
+        </div>
+    </div>
+
+</div>
