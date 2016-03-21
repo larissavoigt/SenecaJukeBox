@@ -261,7 +261,7 @@ namespace Assignment7.Migrations
 
                 new Track
                 {
-                    Name = "It's All Coming Back to Me Now",
+                    Name = "It's All Coming Back To Me Now",
                     Genre = "Pop",
                     Composers = "Jim Steinman",
                     YoutubeId = "pDxoj-tDDIU"
@@ -309,7 +309,7 @@ namespace Assignment7.Migrations
 
                 new Track
                 {
-                    Name = "Lady Gaga",
+                    Name = "Just Dance",
                     Genre = "Pop",
                     Composers = "Lady Gaga, Nadir RedOne",
                     YoutubeId = "2Abk1jAONjw"
@@ -334,17 +334,17 @@ namespace Assignment7.Migrations
             AddOrUpdateArtistAlbums(context, "Rihanna", "What's My Name?");
             AddOrUpdateArtistAlbums(context, "Drake", "What's My Name?");
 
-            // Albums - Tracks association
-            AddOrUpdateAlbumTracks(context, "Pin Ups", "Hello");
+            //Albums - Tracks association
             AddOrUpdateAlbumTracks(context, "What's My Name?", "What's My Name?");
             AddOrUpdateAlbumTracks(context, "Hot Space", "Under Pressure");
-            AddOrUpdateAlbumTracks(context, "Falling into You", "It's All Coming Back to Me Now");
+            AddOrUpdateAlbumTracks(context, "Falling into You", "It's All Coming Back To Me Now");
             AddOrUpdateAlbumTracks(context, "Falling into You", "Because You Loved Me");
             AddOrUpdateAlbumTracks(context, "Let's Talk About Love", "The Reason");
             AddOrUpdateAlbumTracks(context, "Let's Talk About Love", "Immortality");
             AddOrUpdateAlbumTracks(context, "Let's Talk About Love", "My Heart Will Go On");
             AddOrUpdateAlbumTracks(context, "Pin Ups", "Sorrow");
             AddOrUpdateAlbumTracks(context, "The Fame", "Just Dance");
+           
         }
 
         void AddOrUpdateArtistAlbums(Assignment7.Models.ApplicationDbContext context, string artistName, string albumName)
