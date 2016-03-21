@@ -13,13 +13,13 @@ namespace Assignment7.Controllers
         // GET: Tracks
         public ActionResult Index()
         {
-            return View(m.TrackDetailsGetAll());
+            return View(m.TrackGetAllWithDetail());
         }
 
         // GET: Tracks/Details/5
         public ActionResult Details(int? id)
         {
-            var o = m.TrackDetailsGetById(id.GetValueOrDefault());
+            var o = m.TrackGetByIdWithDetail(id.GetValueOrDefault());
 
             if (o == null)
             {
@@ -75,7 +75,7 @@ namespace Assignment7.Controllers
         public ActionResult Edit(int? id)
         {
             // Attempt to fetch the matching object
-            var o = m.TrackDetailsGetById(id.GetValueOrDefault());
+            var o = m.TrackGetByIdWithDetail(id.GetValueOrDefault());
 
             if (o == null)
             {
@@ -133,7 +133,7 @@ namespace Assignment7.Controllers
         [Authorize(Roles = "Clerk")]
         public ActionResult Delete(int? id)
         {
-            var itemToDelete = m.TrackDetailsGetById(id.GetValueOrDefault());
+            var itemToDelete = m.TrackGetByIdWithDetail(id.GetValueOrDefault());
 
             if (itemToDelete == null)
             {

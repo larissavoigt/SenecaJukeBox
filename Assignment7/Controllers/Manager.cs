@@ -45,38 +45,32 @@ namespace Assignment7.Controllers
             return (addedItem == null) ? null : Mapper.Map<ArtistBase>(addedItem);
         }
 
-        public IEnumerable<ArtistDetails> ArtistDetailsGetAll()
+        public IEnumerable<ArtistWithDetail> ArtistGetAllWithDetail()
         {
-            return Mapper.Map<IEnumerable<ArtistDetails>>
+            return Mapper.Map<IEnumerable<ArtistWithDetail>>
                 (ds.Artists.Include("Albums").OrderBy(a => a.Name));
         }
 
-        public ArtistDetails ArtistDetailsGetById(int id)
+        public ArtistWithDetail ArtistGetByIdWithDetail(int id)
         {
-            // Attempt to fetch the object
             var o = ds.Artists.Include("Albums").SingleOrDefault(e => e.Id == id);
-
-            // Return the result, or null if not found
-            return (o == null) ? null : Mapper.Map<ArtistDetails>(o);
+            return (o == null) ? null : Mapper.Map<ArtistWithDetail>(o);
         }
 
-        public IEnumerable<AlbumDetails> AlbumDetailsGetAll()
+        public IEnumerable<AlbumWithDetail> AlbumGetAllWithDetail()
         {
-            return Mapper.Map<IEnumerable<AlbumDetails>>
+            return Mapper.Map<IEnumerable<AlbumWithDetail>>
                 (ds.Albums.Include("Artists").Include("Tracks").OrderBy(a => a.Name));
         }
 
-        public AlbumDetails AlbumDetailsGetById(int id)
+        public AlbumWithDetail AlbumGetByIdWithDetail(int id)
         {
-            // Attempt to fetch the object
             var o = ds.Albums.Include("Artists").Include("Tracks").SingleOrDefault(a => a.Id == id);
-
-            // Return the result, or null if not found
-            return (o == null) ? null : Mapper.Map<AlbumDetails>(o);
+            return (o == null) ? null : Mapper.Map<AlbumWithDetail>(o);
         }
 
         // Create a new album with artists
-        public AlbumDetails AlbumDetailsAdd(AlbumAdd newItem)
+        public AlbumWithDetail AlbumAdd(AlbumAdd newItem)
         {
 
             var o = ds.Albums.Add(Mapper.Map<Album>(newItem));
@@ -95,7 +89,7 @@ namespace Assignment7.Controllers
 
             ds.SaveChanges();
 
-            return (o == null) ? null : Mapper.Map<AlbumDetails>(o);
+            return (o == null) ? null : Mapper.Map<AlbumWithDetail>(o);
         }
 
         public IEnumerable<GenreBase> GenreGetAll()
@@ -121,13 +115,13 @@ namespace Assignment7.Controllers
             return (addedItem == null) ? null : Mapper.Map<TrackBase>(addedItem);
         }
 
-        public IEnumerable<TrackWithDetail> TrackDetailsGetAll()
+        public IEnumerable<TrackWithDetail> TrackGetAllWithDetail()
         {
             return Mapper.Map<IEnumerable<TrackWithDetail>>
                 (ds.Tracks.Include("Albums").OrderBy(a => a.Name));
         }
 
-        public TrackWithDetail TrackDetailsGetById(int id)
+        public TrackWithDetail TrackGetByIdWithDetail(int id)
         {
             var o = ds.Tracks.Include("Albums").SingleOrDefault(e => e.Id == id);
             return (o == null) ? null : Mapper.Map<TrackWithDetail>(o);

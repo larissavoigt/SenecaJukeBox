@@ -13,14 +13,14 @@ namespace Assignment7.Controllers
         // GET: Albums
         public ActionResult Index()
         {
-            var albums = m.AlbumDetailsGetAll();
+            var albums = m.AlbumGetAllWithDetail();
             return View(albums);
         }
 
         // GET: Albums/Details/5
         public ActionResult Details(int? id)
         {
-            var o = m.AlbumDetailsGetById(id.GetValueOrDefault());
+            var o = m.AlbumGetByIdWithDetail(id.GetValueOrDefault());
 
             if (o == null)
             {
@@ -86,7 +86,7 @@ namespace Assignment7.Controllers
                 return View(newItem);
             }
 
-            var addedItem = m.AlbumDetailsAdd(newItem);
+            var addedItem = m.AlbumAdd(newItem);
 
             if (addedItem == null)
             {

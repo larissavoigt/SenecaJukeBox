@@ -49,9 +49,9 @@ namespace Assignment7.Controllers
         public SelectList GenreList { get; set; }
     }
 
-    public class ArtistDetails : ArtistBase
+    public class ArtistWithDetail : ArtistBase
     {
-        public ArtistDetails()
+        public ArtistWithDetail()
         {
             Albums = new List<AlbumBase>();
         }
