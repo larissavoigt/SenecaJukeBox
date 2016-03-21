@@ -43,7 +43,7 @@ namespace Assignment7.Controllers
     public class TrackEdit : TrackAdd
     {
         [Key]
-        public int Id { get }
+        public int Id { get; }
     }
 
     public class TrackEditForm : TrackEdit
