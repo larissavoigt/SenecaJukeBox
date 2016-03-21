@@ -74,7 +74,6 @@ namespace Assignment7.Controllers
         [Authorize(Roles = "Clerk")]
         public ActionResult Edit(int? id)
         {
-            // Attempt to fetch the matching object
             var o = m.TrackGetByIdWithDetail(id.GetValueOrDefault());
 
             if (o == null)
@@ -83,13 +82,13 @@ namespace Assignment7.Controllers
             }
             else
             {
-                // Create and configure an "edit form"
-
-                // Notice that o is a CustomerBase object
-                // We must map it to a CustomerEditContactInfoForm object
-                // Notice that we can use AutoMapper anywhere, 
-                // and not just in the Manager class!
                 var form = AutoMapper.Mapper.Map<TrackEditForm>(o);
+
+                form.GenreList = new SelectList
+                    (items: m.GenreGetAll(),
+                    dataValueField: "Name",
+                    dataTextField: "Name",
+                    selectedValue: o.Genre);
 
                 return View(form);
             }
@@ -100,32 +99,28 @@ namespace Assignment7.Controllers
         [HttpPost]
         public ActionResult Edit(int? id, TrackEdit newItem)
         {
-            // Validate the input
-            if (!ModelState.IsValid)
+            newItem.Clerk = HttpContext.User.Identity.Name;
+            ModelState.Clear();
+
+            if (!TryValidateModel(newItem))
             {
-                // Our "version 1" approach is to display the "edit form" again
-                return RedirectToAction("edit", new { id = newItem.Id });
+                return RedirectToAction("Edit", new { id = newItem.Id });
             }
 
             if (id.GetValueOrDefault() != newItem.Id)
             {
-                // This appears to be data tampering, so redirect the user away
-                return RedirectToAction("index");
+                return RedirectToAction("Index");
             }
 
-            // Attempt to do the update
             var editedItem = m.TrackEdit(newItem);
 
             if (editedItem == null)
             {
-                // There was a problem updating the object
-                // Our "version 1" approach is to display the "edit form" again
-                return RedirectToAction("edit", new { id = newItem.Id });
+                return RedirectToAction("Edit", new { id = newItem.Id });
             }
             else
             {
-                // Show the details view, which will have the updated data
-                return RedirectToAction("details", new { id = newItem.Id });
+                return RedirectToAction("Details", new { id = newItem.Id });
             }
         }
 

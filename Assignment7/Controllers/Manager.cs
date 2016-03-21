@@ -130,7 +130,7 @@ namespace Assignment7.Controllers
         public TrackWithDetail TrackEdit(TrackEdit newItem)
         {
 
-            var o = ds.Tracks.SingleOrDefault(t => t.Id == newItem.Id);
+            var o = ds.Tracks.Find(newItem.Id);
 
             if (o == null)
             {

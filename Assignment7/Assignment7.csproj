@@ -272,6 +272,7 @@
     <Content Include="Views\Tracks\Index.cshtml" />
     <Content Include="Views\Tracks\Create.cshtml" />
     <Content Include="Views\Tracks\Details.cshtml" />
+    <Content Include="Views\Tracks\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
