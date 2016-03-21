@@ -223,9 +223,100 @@ namespace Assignment7.Migrations
                 {
                     Name = "Hello",
                     Genre = "Pop",
-                    Composers = "Adele",
+                    Composers = "Adele Adkins, Greg Kurstin",
                     YoutubeId = "YQHsXMglC9A"
-                }
+                },
+
+                new Track
+                {
+                    Name = "What's My Name?",
+                    Genre = "Hip Hop",
+                    Composers = "Mikkel S. Eriksen, Tor Erik Hermansen",
+                    YoutubeId = "U0CGsw6h60k"
+                },
+
+                new Track
+                {
+                    Name = "Bohemian Rhapsody",
+                    Genre = "Rock",
+                    Composers = "Freddie Mercury",
+                    YoutubeId = "fJ9rUzIMcZQ"
+                },
+
+                new Track
+                {
+                    Name = "Under Pressure",
+                    Genre = "Rock",
+                    Composers = "Queen, David Bowie",
+                    YoutubeId = "a01QQZyl-_I"
+                },
+
+                new Track
+                {
+                    Name = "Heroes",
+                    Genre = "Rock",
+                    Composers = "David Bowie, Brian Eno",
+                    YoutubeId = "yISNT2wUmwA"
+                },
+
+                new Track
+                {
+                    Name = "It's All Coming Back to Me Now",
+                    Genre = "Pop",
+                    Composers = "Jim Steinman",
+                    YoutubeId = "pDxoj-tDDIU"
+                },
+
+                new Track
+                {
+                    Name = "Because You Loved Me",
+                    Genre = "Pop",
+                    Composers = "Diane Warren",
+                    YoutubeId = "JDcuRgk-JEI"
+                },
+
+                new Track
+                {
+                    Name = "The Reason",
+                    Genre = "Pop",
+                    Composers = "Carole King, Mark Hudson",
+                    YoutubeId = "R9z_Au6VMow"
+                },
+
+                new Track
+                {
+                    Name = "Immortality",
+                    Genre = "Pop",
+                    Composers = "Barry Gibb, Robin Gibb",
+                    YoutubeId = "WdYaGt_sm3Q"
+                },
+
+                new Track
+                {
+                    Name = "My Heart Will Go On",
+                    Genre = "Pop",
+                    Composers = "James Horner, Will Jennings",
+                    YoutubeId = "WNIPqafd4As"
+                },
+
+                new Track
+                {
+                    Name = "Sorrow",
+                    Genre = "Rock",
+                    Composers = "Bob Feldman, Jerry Goldstein",
+                    YoutubeId = "LxDVc80Z3FI"
+                },
+
+                new Track
+                {
+                    Name = "Lady Gaga",
+                    Genre = "Pop",
+                    Composers = "Lady Gaga, Nadir RedOne",
+                    YoutubeId = "2Abk1jAONjw"
+                },
+
+
+
             };
 
             tracks.ForEach(t => t.Clerk = clerks[rnd.Next(clerks.Count)]); // add random clerk
